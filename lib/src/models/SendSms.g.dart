@@ -8,7 +8,7 @@ part of 'SendSms.dart';
 
 SendSms _$SendSmsFromJson(Map<String, dynamic> json) {
   return SendSms(
-    json['success'] as String,
+    json['success'] as bool,
     json['is_blocked'] as bool,
     json['error_message'] as String,
   );
