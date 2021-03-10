@@ -37,6 +37,9 @@ lib/generated_plugin_registrant.dart
 # Symbolication related
 app.*.symbols
 
+# auto generate by builder
+*.g.dart
+
 # Obfuscation related
 app.*.map.json
 

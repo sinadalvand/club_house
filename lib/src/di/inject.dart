@@ -1,4 +1,5 @@
 import 'package:club_house/main.dart';
+import 'package:club_house/src/repository/Valutor.dart';
 import 'package:club_house/src/resources/remote/apiCallInterface.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -6,8 +7,9 @@ import 'package:uuid/uuid.dart';
 
 class Inject {
   inject() {
-    Get.put(_getDio(), permanent: true);
+    Get.putAsync(() => SharedPreferences.getInstance(), permanent: true);
     Get.put(ApiCallInterface(Get.find()), permanent: true);
+    Get.put(Valutor(Get.find()), permanent: true);
   }
 
   Dio _getDio() {
