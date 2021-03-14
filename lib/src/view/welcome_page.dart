@@ -1,5 +1,6 @@
 import 'package:club_house/main.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'common/round_button.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -80,7 +81,7 @@ class WelcomePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         RoundButton(
-          // color: Style.AccentBlue,
+          color: Get.theme.accentColor,
           onPressed: () {
             logger.d("Clicked");
           },
@@ -112,7 +113,7 @@ class WelcomePage extends StatelessWidget {
             Text(
               'Have an invite text?',
               style: TextStyle(
-                  // color: Style.AccentBlue,
+                color: Get.theme.accentColor,
                   ),
             ),
             SizedBox(
@@ -121,13 +122,13 @@ class WelcomePage extends StatelessWidget {
             Text(
               'Sign in',
               style: TextStyle(
-                // color: Style.AccentBlue,
+                color: Get.theme.accentColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Icon(
               Icons.arrow_right_alt,
-              // color: Style.AccentBlue,
+              color: Get.theme.accentColor,
             ),
           ],
         ),
