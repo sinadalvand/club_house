@@ -1,10 +1,8 @@
+import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
 import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'file:///C:/Development/Projects/Flutter/club_house/lib/src/view/common/colors.dart' as colore;
-
-import 'view/welcome_page.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,12 +13,14 @@ class MyApp extends StatelessWidget {
       locale: AppTranslation.locale,
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
+      theme: themeChooser(false),
       home: WelcomePage(),
     );
   }
 
   themeChooser(dark) {
     final theme = ThemeData(
+      fontFamily: 'vazir',
       accentColor: colore.Colors.AccentBlue,
       scaffoldBackgroundColor: colore.Colors.LightBrown,
       appBarTheme: AppBarTheme(
@@ -32,22 +32,23 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return dark ?
-    theme.copyWith(
-      scaffoldBackgroundColor: colore.Colors.DarkCarbon,
-      textTheme: TextTheme(
-        bodyText2: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      appBarTheme: AppBarTheme(
-        color: colore.Colors.DarkCarbon,
-        elevation: 0.0,
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-      ),
-    ) : theme;
+    return dark
+        ? theme.copyWith(
+            scaffoldBackgroundColor: colore.Colors.DarkCarbon,
+            textTheme: TextTheme(
+              bodyText2: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            appBarTheme: AppBarTheme(
+              color: colore.Colors.DarkCarbon,
+              elevation: 0.0,
+              iconTheme: IconThemeData(
+                color: Colors.black,
+              ),
+            ),
+          )
+        : theme;
   }
 }
 

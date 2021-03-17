@@ -54,6 +54,17 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: vazir
+      fonts:
+        - asset: fonts/vazir/Vazir-Black.ttf
+        - asset: fonts/vazir/Vazir-Bold.ttf
+        - asset: fonts/vazir/Vazir-Light.ttf
+        - asset: fonts/vazir/Vazir-Medium.ttf
+        - asset: fonts/vazir/Vazir-Regular.ttf
+        - asset: fonts/vazir/Vazir-Thin.ttf
+
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
