@@ -10,7 +10,7 @@ class AppTranslation extends Translations {
   // static final locale = Locale('en', 'US');
   static final locale = Locale('fa', 'IR');
 
-  static final fallbackLocale = Locale('fa', 'IR');
+  static final fallbackLocale = Locale('en', 'US');
 
   @override
   Map<String, Map<String, String>> get keys => {

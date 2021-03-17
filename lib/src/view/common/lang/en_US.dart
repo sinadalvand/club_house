@@ -7,4 +7,8 @@ final en_US = {
   'got_username':'Got your username',
   'sin_in':'Sign in',
   'have_invite':'Have an invite text?',
+  'enter_phone':'Enter your phone #',
+  'phone_number':'Phone Number',
+  'accept_terms':'By entering your number, you\'re agreeing to out\nTerms or Services and Privacy Policy. Thanks!',
+  'next':'Next'
 };
