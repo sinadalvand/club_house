@@ -47,13 +47,14 @@ class WelcomePage extends StatelessWidget {
         children: [
           Text(
             'working_hard'.tr,
+            textAlign: TextAlign.justify,
             style: TextStyle(
               height: 1.8,
               fontSize: 15,
             ),
           ),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
           Text(
             'you_should_invite'.tr,
@@ -63,12 +64,13 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
           Text(
             'team_creator'.tr,
+            textAlign: TextAlign.justify,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 12,
             ),
           ),
         ],
@@ -108,7 +110,7 @@ class WelcomePage extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 15,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
