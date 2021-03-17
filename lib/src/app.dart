@@ -1,5 +1,6 @@
 import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
+import 'package:club_house/src/view/phone_number_page.dart';
 import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,10 @@ class MyApp extends StatelessWidget {
       translations: AppTranslation(),
       theme: themeChooser(false),
       home: WelcomePage(),
+      getPages: [
+        GetPage(name: '/', page: () => WelcomePage()),
+        GetPage(name: '/signin', page: () => PhoneNumberPage()),
+      ],
     );
   }
 
