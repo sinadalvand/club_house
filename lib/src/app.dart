@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
     return dark
         ? theme.copyWith(
             scaffoldBackgroundColor: colore.Colors.DarkCarbon,
-            textTheme: TextTheme(
-              bodyText2: TextStyle(
+            textTheme: theme.textTheme.copyWith(
+              bodyText2: theme.textTheme.bodyText2.copyWith(
                 color: Colors.white,
               ),
             ),
