@@ -1,7 +1,7 @@
 import 'package:club_house/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'common/round_button.dart';
+import 'common/widget/round_button.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -33,7 +33,7 @@ class WelcomePage extends StatelessWidget {
 
   Widget buildTitle() {
     return Text(
-      '🎉 Welcome!',
+      'welcome'.tr,
       style: TextStyle(
         fontSize: 25,
       ),
@@ -46,7 +46,7 @@ class WelcomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'We\'re working hard to get Clubhouse ready for launch! While we wrap up the finishing touches, we\'re adding people gradually to make sure nothing breaks. :)',
+            'working_hard'.tr,
             style: TextStyle(
               height: 1.8,
               fontSize: 15,
@@ -56,7 +56,7 @@ class WelcomePage extends StatelessWidget {
             height: 40,
           ),
           Text(
-            'If you don\'t yet have an invite, you can reserve your username now and we\'ll get you on very soon. We are so grateful you\'re here and can\'t wait to have you join! 🙏',
+            'you_should_invite'.tr,
             style: TextStyle(
               height: 1.8,
               fontSize: 15,
@@ -66,7 +66,7 @@ class WelcomePage extends StatelessWidget {
             height: 40,
           ),
           Text(
-            '🏠 Paul, Rohan & the Clubhouse team',
+            'team_creator'.tr,
             style: TextStyle(
               fontSize: 15,
             ),
@@ -86,21 +86,24 @@ class WelcomePage extends StatelessWidget {
             logger.d("Clicked");
           },
           child: Container(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Got your username',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'got_username'.tr,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                   ),
-                ),
-                Icon(
-                  Icons.arrow_right_alt,
-                  color: Colors.white,
-                ),
-              ],
+                  Icon(
+                    Icons.arrow_right_alt,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -111,24 +114,20 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Have an invite text?',
+              'have_invite'.tr,
               style: TextStyle(
                 color: Get.theme.accentColor,
-                  ),
+              ),
             ),
             SizedBox(
               width: 5,
             ),
             Text(
-              'Sign in',
+              'sin_in'.tr,
               style: TextStyle(
                 color: Get.theme.accentColor,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            Icon(
-              Icons.arrow_right_alt,
-              color: Get.theme.accentColor,
             ),
           ],
         ),

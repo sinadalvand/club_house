@@ -1,3 +1,5 @@
+import 'package:club_house/src/view/common/lang/AppTranslation.dart';
+import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'file:///C:/Development/Projects/Flutter/club_house/lib/src/view/common/colors.dart' as colore;
@@ -9,8 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Club House',
-      theme: themeChooser(true),
+      title: 'club_house'.tr,
+      locale: AppTranslation.locale,
+      fallbackLocale: AppTranslation.fallbackLocale,
+      translations: AppTranslation(),
       home: WelcomePage(),
     );
   }
