@@ -1,4 +1,3 @@
-import 'package:club_house/src/view/common/lang/AppTranslation.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

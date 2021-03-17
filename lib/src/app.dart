@@ -4,6 +4,7 @@ import 'package:club_house/src/view/phone_number_page.dart';
 import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:club_house/src/view/common/routes.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,10 +16,10 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(false),
-      home: WelcomePage(),
+      initialRoute: Director.WELCOME.route,
       getPages: [
-        GetPage(name: '/', page: () => WelcomePage()),
-        GetPage(name: '/signin', page: () => PhoneNumberPage()),
+        GetPage(name: Director.WELCOME.route, page: () => WelcomePage()),
+        GetPage(name: Director.SIGN_IN.route, page: () => PhoneNumberPage()),
       ],
     );
   }

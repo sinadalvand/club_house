@@ -2,6 +2,7 @@ import 'package:club_house/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'common/widget/round_button.dart';
+import 'common/routes.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -82,11 +83,10 @@ class WelcomePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+
         RoundButton(
           color: Get.theme.accentColor,
-          onPressed: () {
-            logger.d("Clicked");
-          },
+          onPressed: () =>Get.toNamed(Director.SIGN_IN.route),
           child: Container(
             child: Directionality(
               textDirection: TextDirection.ltr,
@@ -112,26 +112,29 @@ class WelcomePage extends StatelessWidget {
         SizedBox(
           height: 15,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'have_invite'.tr,
-              style: TextStyle(
-                color: Get.theme.accentColor,
+        GestureDetector(
+          onTap: () => Get.toNamed(Director.SIGN_IN.route),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'have_invite'.tr,
+                style: TextStyle(
+                  color: Get.theme.accentColor,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(
-              'sin_in'.tr,
-              style: TextStyle(
-                color: Get.theme.accentColor,
-                fontWeight: FontWeight.bold,
+              SizedBox(
+                width: 5,
               ),
-            ),
-          ],
+              Text(
+                'sin_in'.tr,
+                style: TextStyle(
+                  color: Get.theme.accentColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
