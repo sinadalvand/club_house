@@ -2,6 +2,7 @@ import 'package:club_house/src/models/Session.dart';
 import 'package:club_house/src/repository/Valutor.dart';
 import 'package:club_house/src/resources/remote/apiCallInterface.dart';
 import 'package:club_house/src/utils/const.dart';
+import 'package:club_house/src/di/controller_injection.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,6 +14,12 @@ class Inject {
     Get.put(Session(Get.find())..load(), permanent: true);
     Get.put(_getDio(Get.find()), permanent: true);
     Get.put(ApiCallInterface(Get.find()), permanent: true);
+
+
+    // inject controllers
+    controller_inject();
+
+
   }
 
   Dio _getDio(Session session) {
