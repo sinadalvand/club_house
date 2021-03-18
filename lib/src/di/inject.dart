@@ -4,15 +4,15 @@ import 'package:club_house/src/resources/remote/apiCallInterface.dart';
 import 'package:club_house/src/utils/const.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Inject {
-  inject() {
-    Get.putAsync(() => SharedPreferences.getInstance(), permanent: true);
-    Get.put(ApiCallInterface(Get.find()), permanent: true);
-    Get.put(Valutor(Get.find()), permanent: true);
+  inject() async {
+    Get.put(GetStorage(),permanent: true);
+    Get.put(Valutor(), permanent: true);
     Get.put(Session(Get.find())..load(), permanent: true);
     Get.put(_getDio(Get.find()), permanent: true);
+    Get.put(ApiCallInterface(Get.find()), permanent: true);
   }
 
   Dio _getDio(Session session) {
