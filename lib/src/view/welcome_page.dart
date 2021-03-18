@@ -1,34 +1,43 @@
-import 'package:club_house/main.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'common/widget/round_button.dart';
+
 import 'common/routes.dart';
+import 'common/widget/round_button.dart';
+import '../controller/WelcomePageController.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        padding: const EdgeInsets.only(
-          left: 50,
-          right: 50,
-          bottom: 60,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            buildTitle(),
-            SizedBox(
-              height: 40,
+   return GetBuilder<WelcomePageController>(
+      init: WelcomePageController(), // INIT IT ONLY THE FIRST TIME
+      builder: (_) {
+        // show unofficial dialog just once
+        ever(_.showUnofficialDialog,(show)=>{if(show)_showUnofficialDialog(context,()=>{_.hideDialog()})});
+        return Scaffold(
+          appBar: AppBar(),
+          body: Container(
+            padding: const EdgeInsets.only(
+              left: 50,
+              right: 50,
+              bottom: 60,
             ),
-            Expanded(
-              child: buildContents(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildTitle(),
+                SizedBox(
+                  height: 40,
+                ),
+                Expanded(
+                  child: buildContents(),
+                ),
+                buildBottom(context),
+              ],
             ),
-            buildBottom(context),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -83,10 +92,9 @@ class WelcomePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-
         RoundButton(
           color: Get.theme.accentColor,
-          onPressed: () =>Get.toNamed(Director.SIGN_IN.route),
+          onPressed: () => Get.toNamed(Director.SIGN_IN.route),
           child: Container(
             child: Directionality(
               textDirection: TextDirection.ltr,
@@ -138,5 +146,44 @@ class WelcomePage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  _showUnofficialDialog(context,Function dismiss) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.INFO,
+      dialogBackgroundColor: Get.theme.scaffoldBackgroundColor,
+      body: Column(
+        children: [
+          Center(
+              child: Text(
+                "warning".tr,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+            ),
+            child: Center(
+              child: Text(
+                "unofficial_description".tr,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ),
+        ],
+      ),
+      headerAnimationLoop: false,
+      btnOkText: "ok".tr,
+      btnOkOnPress: () {},
+      onDissmissCallback:dismiss,
+    ).show();
   }
 }
