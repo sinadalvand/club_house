@@ -10,7 +10,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    return GetBuilder<WelcomePageController>(
-      init: WelcomePageController(), // INIT IT ONLY THE FIRST TIME
+      init: Get.find(), // INIT IT ONLY THE FIRST TIME
       builder: (_) {
         // show unofficial dialog just once
         ever(_.showUnofficialDialog,(show)=>{if(show)_showUnofficialDialog(context,()=>{_.hideDialog()})});
