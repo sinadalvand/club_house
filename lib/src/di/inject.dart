@@ -1,8 +1,10 @@
+import 'package:club_house/src/di/controller_injection.dart';
+import 'package:club_house/src/di/repository_injection.dart';
 import 'package:club_house/src/models/Session.dart';
 import 'package:club_house/src/repository/Valutor.dart';
 import 'package:club_house/src/resources/remote/apiCallInterface.dart';
 import 'package:club_house/src/utils/const.dart';
-import 'package:club_house/src/di/controller_injection.dart';
+import 'package:club_house/src/utils/io_adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -19,12 +21,16 @@ class Inject {
     // inject controllers
     controller_inject();
 
+    // inject repositories
+    repository_inject();
 
   }
 
   Dio _getDio(Session session) {
+    // httpClient.
+
     final dio = Dio()
-      //dynamic headers
+      ..httpClientAdapter  = SmartHttpClientAdapter()
       ..interceptors.add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
         var customHeaders = {
           'content-type': 'application/json',
