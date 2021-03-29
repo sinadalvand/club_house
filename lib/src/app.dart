@@ -1,10 +1,11 @@
 import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
+import 'package:club_house/src/view/common/routes.dart';
 import 'package:club_house/src/view/phone_number_page.dart';
+import 'package:club_house/src/view/phone_verify_page.dart';
 import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:club_house/src/view/common/routes.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,11 +16,12 @@ class MyApp extends StatelessWidget {
       locale: AppTranslation.locale,
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
-      theme: themeChooser(false),
+      theme: themeChooser(true),
       initialRoute: Director.WELCOME.route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage()),
         GetPage(name: Director.SIGN_IN.route, page: () => PhoneNumberPage()),
+        GetPage(name: Director.VERIFY_PHONE.route, page: () => PhoneNumberVerifyPage()),
       ],
     );
   }
@@ -50,11 +52,10 @@ class MyApp extends StatelessWidget {
               color: colore.Colors.DarkCarbon,
               elevation: 0.0,
               iconTheme: IconThemeData(
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           )
         : theme;
   }
 }
-

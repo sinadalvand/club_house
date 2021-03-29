@@ -37,7 +37,7 @@ class PhonePageController extends Controller {
     var phone = countryCode + phoneNumberController.text;
     _authRepository.sendSms(phone).then((value) {
       phoneBlocked = value.is_blocked;
-      _gotoNextPage(value.success);
+      _gotoNextPage(value.success,phone: phone);
       update();
     }).onError((error, stackTrace) {
       _gotoNextPage(false);
@@ -45,9 +45,9 @@ class PhonePageController extends Controller {
     });
   }
 
-  _gotoNextPage(result) {
+  _gotoNextPage(result,{String phone}) {
     if (result) {
-      Get.toNamed(Director.WELCOME.route);
+      Get.toNamed(Director.VERIFY_PHONE.route,parameters: {'phone':phone});
     } else {
       Get.snackbar("error".tr, "error_occurred".tr);
     }

@@ -3,6 +3,7 @@
 enum Director {
   WELCOME,
   SIGN_IN,
+  VERIFY_PHONE,
 }
 
 extension DirectorExtension on Director {
@@ -10,6 +11,8 @@ extension DirectorExtension on Director {
     switch (this) {
       case Director.SIGN_IN:
         return '/signin';
+        case Director.VERIFY_PHONE:
+        return '/verify';
       default:
         return '/';
     }
