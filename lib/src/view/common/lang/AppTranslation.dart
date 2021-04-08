@@ -6,7 +6,6 @@ import 'fa_IR.dart';
 
 //AppTranslation.dart
 class AppTranslation extends Translations {
-
   // static final locale = Locale('en', 'US');
   static final locale = Locale('fa', 'IR');
 
@@ -14,8 +13,7 @@ class AppTranslation extends Translations {
 
   @override
   Map<String, Map<String, String>> get keys => {
-    'en_US':en_US,
-    'fa_IR':fa_IR,
-  };
+        'en_US': en_US,
+        'fa_IR': fa_IR,
+      };
 }
-
