@@ -29,4 +29,6 @@ final fa_IR = {
   'firstname':'نام',
   'what_is_your_full_name':'اسم و فامیلتان را وارد کنید؟',
   'pick_username':'یک نام کاربری انتخاب کنید',
+  'add_new_picture':'عکس پروفایل را انتخاب کنید',
+  'skip':'بیخیال',
 };

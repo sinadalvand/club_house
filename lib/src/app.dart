@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(true),
-      initialRoute: Director.WELCOME.route,
+      initialRoute: Director.REGISTER_PROPIC.route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage()),
         GetPage(name: Director.SIGN_IN.route, page: () => PhoneNumberPage()),
@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
         GetPage(name: Director.REGISTER_NAME.route, page: () => FullNamePage()),
         GetPage(name: Director.REGISTER_USERNAME.route, page: () => UsernamePage()),
+        GetPage(name: Director.REGISTER_PROPIC.route, page: () => PickPhotoPage()),
+        // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
       ],
     );
   }

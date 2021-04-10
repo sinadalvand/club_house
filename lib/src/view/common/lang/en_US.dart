@@ -30,4 +30,6 @@ final en_US = {
   'firstname':'First name',
   'what_is_your_full_name':'What\'s your full name?',
   'pick_username':'Pick a username',
+  'add_new_picture':'Great! Now add a photo?',
+  'skip':'Skip',
 };
