@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage()),
         GetPage(name: Director.SIGN_IN.route, page: () => PhoneNumberPage()),
         GetPage(name: Director.VERIFY_PHONE.route, page: () => PhoneNumberVerifyPage()),
+        GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
       ],
     );
   }

@@ -37,8 +37,11 @@ abstract class ApiCallInterface {
     @Part(value: "verification_code", contentType: 'application/json') String code,
   );
 
-
   /* <=============== Profile ===============> */
+
+  // check user is in wait list for receive an invite
+  @POST("/check_waitlist_status")
+  Future<WaitList> isWaitList();
 
 
 

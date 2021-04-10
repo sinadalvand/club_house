@@ -4,6 +4,7 @@ enum Director {
   WELCOME,
   SIGN_IN,
   VERIFY_PHONE,
+  WAIT_LIST,
   MAIN_PAGE,
 }
 
