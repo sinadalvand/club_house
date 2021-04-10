@@ -179,6 +179,6 @@ class WelcomePage extends StatelessWidget {
   }
 
   _gotoMainDesirePage(Director director) {
-    Get.toNamed(director.route);
+    Get.offAll(director.route);
   }
 }
