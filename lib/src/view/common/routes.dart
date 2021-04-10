@@ -4,6 +4,7 @@ enum Director {
   WELCOME,
   SIGN_IN,
   VERIFY_PHONE,
+  MAIN_PAGE,
 }
 
 extension DirectorExtension on Director {
