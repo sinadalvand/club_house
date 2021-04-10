@@ -6,6 +6,7 @@ enum Director {
   VERIFY_PHONE,
   WAIT_LIST,
   MAIN_PAGE,
+  REGISTER_NAME,
 }
 
 extension DirectorExtension on Director {

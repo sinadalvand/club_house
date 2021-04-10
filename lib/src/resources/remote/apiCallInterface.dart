@@ -43,6 +43,9 @@ abstract class ApiCallInterface {
   @POST("/check_waitlist_status")
   Future<WaitList> isWaitList();
 
+  // update user name
+  @POST("/update_name")
+  Future<WaitList> updateName(@Part(value: "name", contentType: 'application/json',) String name);
 
 
 }

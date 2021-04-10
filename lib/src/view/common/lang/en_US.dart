@@ -26,4 +26,7 @@ final en_US = {
   'sms_code_sent':'Sms sent.',
   'we_will_call_you':'We\'ll call you, wait .',
   'we_have_reserved':'🎉 We\'ve reserved @name for you, and we\'ll text you as soon as your account is ready! ',
+  'lastname':'Last Name',
+  'firstname':'First name',
+  'what_is_your_full_name':'What\'s your full name?',
 };
