@@ -1,11 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'common/widget/register_next_button.dart';
 
-import 'common/routes.dart';
-import 'common/widget/round_button.dart';
 import '../controller/WelcomePageController.dart';
+import 'common/routes.dart';
+import 'common/widget/register_next_button.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -20,6 +19,13 @@ class WelcomePage extends StatelessWidget {
             if (show) _showUnofficialDialog(context, () => {_.hideDialog()})
           },
         );
+
+        // go to another page in init time
+        ever(_.navigator, (director) => _gotoMainDesirePage(director));
+
+        // check for token and navigate
+        _.initCheck();
+
         return Scaffold(
           appBar: AppBar(),
           body: Container(
@@ -170,5 +176,9 @@ class WelcomePage extends StatelessWidget {
       btnOkOnPress: () {},
       onDissmissCallback: dismiss,
     ).show();
+  }
+
+  _gotoMainDesirePage(Director director) {
+    Get.toNamed(director.route);
   }
 }
