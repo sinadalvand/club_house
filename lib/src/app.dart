@@ -1,8 +1,12 @@
 import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
 import 'package:club_house/src/view/common/routes.dart';
+import 'package:club_house/src/view/full_name_page.dart';
 import 'package:club_house/src/view/phone_number_page.dart';
+import 'package:club_house/src/view/username_page.dart';
 import 'package:club_house/src/view/phone_verify_page.dart';
+import 'package:club_house/src/view/pick_photo_page.dart';
+import 'package:club_house/src/view/waitlist_page.dart';
 import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +28,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.VERIFY_PHONE.route, page: () => PhoneNumberVerifyPage()),
         GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
         GetPage(name: Director.REGISTER_NAME.route, page: () => FullNamePage()),
+        GetPage(name: Director.REGISTER_USERNAME.route, page: () => UsernamePage()),
       ],
     );
   }

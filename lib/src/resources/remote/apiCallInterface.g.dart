@@ -107,4 +107,85 @@ class _ApiCallInterface implements ApiCallInterface {
     final value = VerifySms.fromJson(_result.data);
     return value;
   }
+
+  @override
+  Future<WaitList> isWaitList() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>(
+        '/check_waitlist_status',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = WaitList.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<WaitList> updateName(name) async {
+    ArgumentError.checkNotNull(name, 'name');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (name != null) {
+      _data.fields.add(MapEntry('name', name));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/update_name',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = WaitList.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<WaitList> updateUserName(username) async {
+    ArgumentError.checkNotNull(username, 'username');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (username != null) {
+      _data.fields.add(MapEntry('username', username));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/update_username',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = WaitList.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<WaitList> updateuserName(username) async {
+    ArgumentError.checkNotNull(username, 'username');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (username != null) {
+      _data.fields.add(MapEntry('username', username));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/update_username',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = WaitList.fromJson(_result.data);
+    return value;
+  }
 }

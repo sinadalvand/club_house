@@ -7,6 +7,7 @@ enum Director {
   WAIT_LIST,
   MAIN_PAGE,
   REGISTER_NAME,
+  REGISTER_USERNAME,
 }
 
 extension DirectorExtension on Director {
@@ -14,8 +15,16 @@ extension DirectorExtension on Director {
     switch (this) {
       case Director.SIGN_IN:
         return '/signin';
-        case Director.VERIFY_PHONE:
+      case Director.VERIFY_PHONE:
         return '/verify';
+      case Director.MAIN_PAGE:
+        return '/main';
+      case Director.WAIT_LIST:
+        return '/waitlist';
+      case Director.REGISTER_NAME:
+        return '/register_name';
+        case Director.REGISTER_USERNAME:
+        return '/register_username';
       default:
         return '/';
     }
