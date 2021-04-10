@@ -1,6 +1,6 @@
 import 'package:club_house/main.dart';
-import 'package:club_house/src/controller/PhonePageController.dart';
 import 'package:club_house/src/controller/PhoneVerifyController.dart';
+import 'package:club_house/src/view/common/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -10,6 +10,10 @@ import 'common/widget/round_button.dart';
 class PhoneNumberVerifyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    // go to next page
+    ever(Get.find<PhoneVerifyController>().director, (director) => _gotoNextPage(director));
+
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -96,7 +100,7 @@ class PhoneNumberVerifyPage extends StatelessWidget {
         if (controller.counter.value == 0) controller.resendCode();
       },
       child: Obx(
-            () {
+        () {
           final controller = Get.find<PhoneVerifyController>();
           final counter = controller.counter.toString();
           final resendCount = controller.resendCount;
@@ -104,8 +108,7 @@ class PhoneNumberVerifyPage extends StatelessWidget {
           return AnimatedOpacity(
               opacity: counter == "0" ? 1.0 : 0.4,
               duration: Duration(seconds: 1),
-              child: resendCount > 2 ? _makePhoneCallCounter() : _resendButtonContent(counter)
-          );
+              child: resendCount > 2 ? _makePhoneCallCounter() : _resendButtonContent(counter));
         },
       ),
     );
@@ -182,7 +185,7 @@ class PhoneNumberVerifyPage extends StatelessWidget {
     );
   }
 
-  goNext() {
-    Get.find<PhonePageController>().requestSendCode();
+  _gotoNextPage(Director director) {
+    Get.off(director);
   }
 }

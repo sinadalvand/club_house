@@ -1,19 +1,14 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:club_house/main.dart';
 import 'package:club_house/src/contracts/controller.dart';
 import 'package:club_house/src/repository/AuthRepository.dart';
+import 'package:club_house/src/view/common/routes.dart';
 import 'package:countdown/countdown.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart';
 
 class PhoneVerifyController extends Controller {
-
   // doing resend , verify and call
   AuthRepository _authRepository = Get.find();
-
-
 
   // next click listener
   Function nextButtonFunction;
@@ -32,6 +27,9 @@ class PhoneVerifyController extends Controller {
 
   // resend counter
   CountDown _counter;
+
+  // director to another page
+  final director = Rx<Director>();
 
   StreamSubscription<Duration> _sub;
 
@@ -56,52 +54,50 @@ class PhoneVerifyController extends Controller {
 
   resendCode() {
     _startCounter();
-    resendCount > 2 ?  makePhoneCall() : sendSms();
+    resendCount > 2 ? makePhoneCall() : sendSms();
   }
 
   sendSms() {
     _authRepository.resendSms(_phone).then((value) {
       Get.snackbar("success".tr, "sms_code_sent".tr);
-    }).onError((error, stackTrace) {
-
-    });
+    }).onError((error, stackTrace) {});
   }
 
   makePhoneCall() {
     _authRepository.makeCall(_phone).then((value) {
       Get.snackbar("success".tr, "we_will_call_you".tr);
-    }).onError((error, stackTrace) {
-
-    });
+    }).onError((error, stackTrace) {});
   }
 
   _verifyCode() {
     _authRepository.verifyCode(_phone, _code).then((value) {
-
       // 1- save user token
       valutor.token = value.auth_token;
       // 2- save user id
-      valutor.user_id = value.user_profile?.user_id?.toString()??"";
+      valutor.user_id = value.user_profile?.user_id?.toString() ?? "";
       // 3- is waited list
       valutor.waitedlist = value.is_waitlisted;
 
+      // save user name in pref
+      if (value.user_profile.name != null) valutor.username = value.user_profile.name;
+
+      // save username in pref
+      if (value.user_profile.username != null) valutor.username = value.user_profile.username;
 
       // if is waited list go to waited list
       // if username is in profile then go to register page
       // if everything i ok then go to main page
-      if(value.is_waitlisted){
-        logger.d("Waited");
-        //TODO go to waited list
-      }else if(value.user_profile?.user_id == null){
-        logger.d("register");
-        //TODO just need complete registration
-      }else{
-        logger.d("main menu");
-        //TODO goto main menu
+      if (valutor.name == null) {
+        director.value = Director.REGISTER_NAME;
+      } else if (valutor.username == null) {
+        director.value = Director.REGISTER_USERNAME;
+      } else if (valutor.waitedlist) {
+        director.value = Director.WAIT_LIST;
+      } else {
+        director.value = Director.MAIN_PAGE;
       }
-
     }).onError((error, stackTrace) {
-
+      //TODO handle error for verify
     });
   }
 
