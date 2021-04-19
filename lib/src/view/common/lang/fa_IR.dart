@@ -31,4 +31,7 @@ final fa_IR = {
   'pick_username':'یک نام کاربری انتخاب کنید',
   'add_new_picture':'عکس پروفایل را انتخاب کنید',
   'skip':'بیخیال',
+  'name_should_be_more_than_2_char':'نام باید بیشتر از 2 کاراگتر باشد.',
+  'family_should_be_more_than_2_char':'نام خانوادگی باید بیشتر از 2 کاراگتر باشد.',
+  'check_and_go':'بررسی و ثبت',
 };
