@@ -1,4 +1,3 @@
-import 'package:club_house/main.dart';
 import 'package:club_house/src/contracts/controller.dart';
 import 'package:club_house/src/repository/AuthRepository.dart';
 import 'package:club_house/src/view/common/routes.dart';

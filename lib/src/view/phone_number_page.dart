@@ -3,14 +3,13 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'common/routes.dart';
 import 'common/widget/round_button.dart';
 
 class PhoneNumberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(automaticallyImplyLeading: false,),
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.only(
