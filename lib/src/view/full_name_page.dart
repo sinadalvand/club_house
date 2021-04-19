@@ -1,16 +1,11 @@
+import 'package:club_house/src/controller/FullnamePageController.dart';
+import 'package:club_house/src/view/common/widget/register_next_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'common/widget/round_button.dart';
 
-
 class FullNamePage extends StatelessWidget {
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _firstNameFormKey = GlobalKey<FormState>();
-  final _lastNameFormKey = GlobalKey<FormState>();
-  Function onNextButtonClick;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,21 +13,26 @@ class FullNamePage extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.only(top: 30, bottom: 60),
-        child: Column(
-          children: [
-            buildTitle(),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: buildForm(),
-            ),
-            Spacer(),
-            buildBottom(),
-          ],
+        child: GetBuilder<FullNamePageController>(
+          init: Get.find(),
+          builder: (controller) {
+            return Column(
+              children: [
+                buildTitle(),
+                SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: buildForm(controller),
+                ),
+                Spacer(),
+                buildBottom(controller),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -47,7 +47,7 @@ class FullNamePage extends StatelessWidget {
     );
   }
 
-  Widget buildForm() {
+  Widget buildForm(FullNamePageController controller) {
     return Row(
       children: [
         Expanded(
@@ -57,28 +57,17 @@ class FullNamePage extends StatelessWidget {
               color: Colors.white,
             ),
             child: Form(
-              key: _firstNameFormKey,
+              key: controller.firstNameFormKey,
               child: TextFormField(
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  _firstNameFormKey.currentState.validate();
+                  controller.firstNameFormKey.currentState.validate();
                 },
-                // validator: (value) {
-                //   if (value.isNotEmpty) {
-                //     if (_lastNameController.text.isNotEmpty) {
-                //       setState(() {
-                //         onNextButtonClick = next;
-                //       });
-                //     }
-                //   } else {
-                //     setState(() {
-                //       onNextButtonClick = null;
-                //     });
-                //   }
-                //
-                //   return null;
-                // },
-                controller: _firstNameController,
+                validator: (value) {
+                  controller.setFirstName(value);
+                  return null;
+                },
+                controller: controller.firstNameController,
                 autocorrect: false,
                 autofocus: false,
                 decoration: InputDecoration(
@@ -112,28 +101,15 @@ class FullNamePage extends StatelessWidget {
               color: Colors.white,
             ),
             child: Form(
-              key: _lastNameFormKey,
+              key: controller.lastNameFormKey,
               child: TextFormField(
                 textAlign: TextAlign.center,
-                onChanged: (value) {
-                  _lastNameFormKey.currentState.validate();
+                onChanged: (value) =>controller.lastNameFormKey.currentState.validate(),
+                validator: (value) {
+                  controller.setLastName(value);
+                  return null;
                 },
-                // validator: (value) {
-                //   if (value.isNotEmpty) {
-                //     if (_firstNameController.text.isNotEmpty) {
-                //       setState(() {
-                //         onNextButtonClick = next;
-                //       });
-                //     }
-                //   } else {
-                //     setState(() {
-                //       onNextButtonClick = null;
-                //     });
-                //   }
-                //
-                //   return null;
-                // },
-                controller: _lastNameController,
+                controller: controller.lastNameController,
                 autocorrect: false,
                 autofocus: false,
                 decoration: InputDecoration(
@@ -161,30 +137,7 @@ class FullNamePage extends StatelessWidget {
     );
   }
 
-  Widget buildBottom() {
-    return RoundButton(
-      color: Get.theme.accentColor,
-      minimumWidth: 230,
-      disabledColor: Get.theme.accentColor.withOpacity(0.3),
-      onPressed: onNextButtonClick,
-      child: Container(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'next'.tr,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-            Icon(
-              Icons.arrow_right_alt,
-              color: Colors.white,
-            ),
-          ],
-        ),
-      ),
-    );
+  Widget buildBottom(FullNamePageController controller) {
+    return RegisterNextButton("next".tr,controller.onNextButtonClick);
   }
 }
