@@ -127,7 +127,7 @@ class _ApiCallInterface implements ApiCallInterface {
   }
 
   @override
-  Future<WaitList> updateName(name) async {
+  Future<BaseResponse> updateName(name) async {
     ArgumentError.checkNotNull(name, 'name');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -143,12 +143,12 @@ class _ApiCallInterface implements ApiCallInterface {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = WaitList.fromJson(_result.data);
+    final value = BaseResponse.fromJson(_result.data);
     return value;
   }
 
   @override
-  Future<WaitList> updateUserName(username) async {
+  Future<BaseResponse> updateUserName(username) async {
     ArgumentError.checkNotNull(username, 'username');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -164,19 +164,20 @@ class _ApiCallInterface implements ApiCallInterface {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = WaitList.fromJson(_result.data);
+    final value = BaseResponse.fromJson(_result.data);
     return value;
   }
 
   @override
-  Future<WaitList> updateuserName(username) async {
-    ArgumentError.checkNotNull(username, 'username');
+  Future<BaseResponse> updatePropic(file) async {
+    ArgumentError.checkNotNull(file, 'file');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = FormData();
-    if (username != null) {
-      _data.fields.add(MapEntry('username', username));
-    }
+    _data.files.add(MapEntry(
+        'file',
+        MultipartFile.fromFileSync(file.path,
+            filename: file.path.split(Platform.pathSeparator).last)));
     final _result = await _dio.request<Map<String, dynamic>>('/update_username',
         queryParameters: queryParameters,
         options: RequestOptions(
@@ -185,7 +186,7 @@ class _ApiCallInterface implements ApiCallInterface {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = WaitList.fromJson(_result.data);
+    final value = BaseResponse.fromJson(_result.data);
     return value;
   }
 }

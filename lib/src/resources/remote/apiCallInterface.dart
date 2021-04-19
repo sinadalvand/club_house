@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:club_house/src/models/SendSms.dart';
 import 'package:club_house/src/models/VerifySms.dart';
+import 'package:club_house/src/models/BaseResponse.dart';
 import 'package:club_house/src/models/WaitList.dart';
 import 'package:club_house/src/utils/const.dart';
 import 'package:dio/dio.dart';
@@ -46,14 +49,14 @@ abstract class ApiCallInterface {
 
   // update user name
   @POST("/update_name")
-  Future<WaitList> updateName(@Part(value: "name", contentType: 'application/json',) String name);
+  Future<BaseResponse> updateName(@Part(value: "name", contentType: 'application/json',) String name);
 
   // update user name
   @POST("/update_username")
-  Future<WaitList> updateUserName(@Part(value: "username", contentType: 'application/json',) String username);
+  Future<BaseResponse> updateUserName(@Part(value: "username", contentType: 'application/json',) String username);
 
-  // update user name
+  // update user propic
   @POST("/update_username")
   @MultiPart()
-  Future<WaitList> updateuserName(@Part(value: "username", contentType: 'application/json',) String username);
+  Future<BaseResponse> updatePropic(@Part(value: "file") File file);
 }
