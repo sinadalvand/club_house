@@ -1,13 +1,10 @@
+import 'package:club_house/src/controller/UsernamePageController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'common/widget/register_next_button.dart';
 
 class UsernamePage extends StatelessWidget {
-  final _userNameController = TextEditingController();
-  final _userNameformKey = GlobalKey<FormState>();
-  Function onNextButtonClick;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,16 +15,19 @@ class UsernamePage extends StatelessWidget {
           top: 30,
           bottom: 60,
         ),
-        child: Column(
-          children: [
-            buildTitle(),
-            SizedBox(
-              height: 50,
-            ),
-            buildForm(),
-            Spacer(),
-            buildBottom(),
-          ],
+        child: GetBuilder<UsernamePageController>(
+          init: Get.find<UsernamePageController>(),
+          builder: (controller) => Column(
+            children: [
+              buildTitle(),
+              SizedBox(
+                height: 50,
+              ),
+              buildForm(controller),
+              Spacer(),
+              buildBottom(controller),
+            ],
+          ),
         ),
       ),
     );
@@ -42,58 +42,58 @@ class UsernamePage extends StatelessWidget {
     );
   }
 
-  Widget buildForm() {
+  Widget buildForm(UsernamePageController controller) {
     return Container(
       width: 330,
+      height: 50,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Form(
-          key: _userNameformKey,
-          child: Directionality(textDirection: TextDirection.ltr, child: TextFormField(
-            textAlign: TextAlign.center,
-            onChanged: (value) {
-              _userNameformKey.currentState.validate();
-            },
-            // validator: (value) {
-            //   if (value.isEmpty) {
-            //     setState(() {
-            //       onNextButtonClick = null;
-            //     });
-            //   } else {
-            //     setState(() {
-            //       // onNextButtonClick = next;
-            //     });
-            //   }
-            //   return null;
-            // },
-            controller: _userNameController,
-            autocorrect: false,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '@username',
-              hintStyle: TextStyle(
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "@",
+              style: TextStyle(
+                color: Colors.black,
                 fontSize: 20,
               ),
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
             ),
-            keyboardType: TextInputType.text,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-              fontWeight: FontWeight.w400,
-            ),
-          ),)
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: 48, maxWidth: 300),
+              child: IntrinsicWidth(
+                child: TextField(
+                  autocorrect: false,
+                  autofocus: false,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'username',
+                    hintStyle: TextStyle(
+                      fontSize: 20,
+                    ),
+                    border: InputBorder.none,
+                  ),
+                  onChanged: (value) => controller.setUsername(value),
+                  controller: controller.userNameController,
+                  keyboardType: TextInputType.text,
+                  style: TextStyle(
+                    fontSize: 20,
+                    decoration: null,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  Widget buildBottom() {
-    return RegisterNextButton("next".tr);
+  Widget buildBottom(UsernamePageController controller) {
+    return RegisterNextButton("check_and_go".tr, controller.onNextButtonClick);
   }
 }
