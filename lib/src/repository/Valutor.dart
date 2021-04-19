@@ -35,7 +35,7 @@ class Valutor {
 
 
   // username
-  final USER_NAME_KEY = "name";
+  final USER_NAME_KEY = "username";
   String get username => _pref.read(USER_NAME_KEY);
   set username(String username) => _pref.write(USER_NAME_KEY, username);
 
