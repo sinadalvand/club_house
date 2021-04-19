@@ -1,4 +1,3 @@
-import 'package:club_house/src/di/controller_injection.dart';
 import 'package:club_house/src/di/repository_injection.dart';
 import 'package:club_house/src/models/Session.dart';
 import 'package:club_house/src/repository/Valutor.dart';
@@ -16,10 +15,6 @@ class Inject {
     Get.put(Session(Get.find())..load(), permanent: true);
     Get.put(_getDio(Get.find()), permanent: true);
     Get.put(ApiCallInterface(Get.find()), permanent: true);
-
-
-    // inject controllers
-    controller_inject();
 
     // inject repositories
     repository_inject();
