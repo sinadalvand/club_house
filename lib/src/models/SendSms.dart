@@ -5,8 +5,8 @@ part 'SendSms.g.dart';
 @JsonSerializable()
 class SendSms {
   bool success;
-  bool is_blocked;
   String error_message;
+  bool is_blocked;
 
   SendSms(this.success, this.is_blocked, this.error_message);
 

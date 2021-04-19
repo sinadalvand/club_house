@@ -16,6 +16,6 @@ SendSms _$SendSmsFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SendSmsToJson(SendSms instance) => <String, dynamic>{
       'success': instance.success,
-      'is_blocked': instance.is_blocked,
       'error_message': instance.error_message,
+      'is_blocked': instance.is_blocked,
     };
