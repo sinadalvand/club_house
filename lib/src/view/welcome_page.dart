@@ -20,11 +20,11 @@ class WelcomePage extends StatelessWidget {
           },
         );
 
-        // go to another page in init time
-        ever(_.navigator, (director) => _gotoMainDesirePage(director));
-
         // check for token and navigate
         _.initCheck();
+
+        // go to another page in init time
+        ever(_.navigator, (director) => _gotoMainDesirePage(director));
 
         return Scaffold(
           appBar: AppBar(),
@@ -179,6 +179,6 @@ class WelcomePage extends StatelessWidget {
   }
 
   _gotoMainDesirePage(Director director) {
-    Get.offAll(director.route);
+    Get.offAllNamed(director.route);
   }
 }
