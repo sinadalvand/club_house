@@ -9,6 +9,7 @@ enum Director {
   REGISTER_NAME,
   REGISTER_USERNAME,
   REGISTER_PROPIC,
+  PROFILE,
 }
 
 extension DirectorExtension on Director {
@@ -28,6 +29,8 @@ extension DirectorExtension on Director {
         return '/register_username';
         case Director.REGISTER_PROPIC:
         return '/register_propic';
+        case Director.PROFILE:
+        return '/profile';
       default:
         return '/';
     }

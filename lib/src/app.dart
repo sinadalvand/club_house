@@ -1,11 +1,13 @@
+import 'package:club_house/src/utils/data.dart';
 import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
 import 'package:club_house/src/view/common/routes.dart';
 import 'package:club_house/src/view/register/full_name_page.dart';
 import 'package:club_house/src/view/register/phone_number_page.dart';
-import 'file:///C:/Development/Projects/Flutter/club_house/lib/src/view/register/phone_verify_page.dart';
-import 'file:///C:/Development/Projects/Flutter/club_house/lib/src/view/register/pick_photo_page.dart';
+import 'package:club_house/src/view/register/phone_verify_page.dart';
+import 'package:club_house/src/view/register/pick_photo_page.dart';
 import 'package:club_house/src/view/register/username_page.dart';
+import 'package:club_house/src/view/profile/profile_page.dart';
 import 'package:club_house/src/view/register/waitlist_page.dart';
 import 'package:club_house/src/view/homepage/home_page.dart';
 import 'package:club_house/src/view/register/welcome_page.dart';
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(true),
-      initialRoute: Director.MAIN_PAGE.route,
+      initialRoute: Director.PROFILE.route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => WelcomePageController());
@@ -50,6 +52,9 @@ class MyApp extends StatelessWidget {
           Get.lazyPut(() => ProfilePicturePickerController());
         })),
         GetPage(name: Director.MAIN_PAGE.route, page: () => HomePage(),binding: BindingsBuilder((){
+          // Get.lazyPut(() => ProfilePicturePickerController());
+        })),
+        GetPage(name: Director.PROFILE.route, page: () => ProfilePage(profile: myProfile,),binding: BindingsBuilder((){
           // Get.lazyPut(() => ProfilePicturePickerController());
         })),
         // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
