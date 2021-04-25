@@ -1,5 +1,6 @@
 import 'package:club_house/src/contracts/controller.dart';
 import 'package:club_house/src/repository/ProfileRepository.dart';
+import 'package:club_house/src/view/common/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +35,7 @@ class UsernamePageController extends Controller {
     _profileRepository.updateUserName(_username).then((value) {
       if(value.success){
         valutor.username = _username;
+        Get.offAllNamed(Director.REGISTER_USERNAME.route);
       }else{
         //TODO check in we enter exist id
         Get.snackbar("error".tr, "در ثبت اطلاعات از سمت سرور مشکلی رخ داده!");

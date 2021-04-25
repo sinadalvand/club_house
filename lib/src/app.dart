@@ -10,7 +10,7 @@ import 'package:club_house/src/view/waitlist_page.dart';
 import 'package:club_house/src/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:club_house/src/controller/ProfilePicturePickerController.dart';
 import 'controller/FullnamePageController.dart';
 import 'controller/PhonePageController.dart';
 import 'controller/PhoneVerifyController.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(true),
-      initialRoute: Director.REGISTER_USERNAME.route,
+      initialRoute: Director.REGISTER_PROPIC.route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => WelcomePageController());
@@ -45,7 +45,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.REGISTER_USERNAME.route, page: () => UsernamePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => UsernamePageController());
         })),
-        GetPage(name: Director.REGISTER_PROPIC.route, page: () => PickPhotoPage()),
+        GetPage(name: Director.REGISTER_PROPIC.route, page: () => PickPhotoPage(),binding: BindingsBuilder((){
+          Get.lazyPut(() => ProfilePicturePickerController());
+        })),
         // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
       ],
     );
