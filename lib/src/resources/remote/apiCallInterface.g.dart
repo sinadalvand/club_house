@@ -310,14 +310,14 @@ class _ApiCallInterface implements ApiCallInterface {
   }
 
   @override
-  Future<BaseResponse> followUser(bio, {source = 4}) async {
-    ArgumentError.checkNotNull(bio, 'bio');
+  Future<BaseResponse> followUser(userId, {source = 4}) async {
+    ArgumentError.checkNotNull(userId, 'userId');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = FormData();
-    if (bio != null) {
-      _data.fields.add(MapEntry('user_id', bio));
+    if (userId != null) {
+      _data.fields.add(MapEntry('user_id', userId.toString()));
     }
     if (source != null) {
       _data.fields.add(MapEntry('source', source.toString()));
@@ -335,13 +335,13 @@ class _ApiCallInterface implements ApiCallInterface {
   }
 
   @override
-  Future<BaseResponse> unfollowUser(bio) async {
-    ArgumentError.checkNotNull(bio, 'bio');
+  Future<BaseResponse> unfollowUser(userId) async {
+    ArgumentError.checkNotNull(userId, 'userId');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = FormData();
-    if (bio != null) {
-      _data.fields.add(MapEntry('user_id', bio));
+    if (userId != null) {
+      _data.fields.add(MapEntry('user_id', userId.toString()));
     }
     final _result = await _dio.request<Map<String, dynamic>>('/unfollow',
         queryParameters: queryParameters,

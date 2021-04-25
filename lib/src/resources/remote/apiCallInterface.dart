@@ -112,4 +112,35 @@ abstract class ApiCallInterface {
   Future<ChannelResponse> getChannels();
 
 
+  /* <=============== Room Management ===============> */
+
+  // get special channel details
+  @POST("/get_channel")
+  Future<ChannelResponse> getChannel(@Part(value: "channel", contentType: 'application/json',) String channel);
+
+  // get special channel details
+  @POST("/join_channel")
+  Future<Channel> joinChannel(
+      @Part(value: "channel", contentType: 'application/json',) String channel,
+      {@Part(value: "attributionSource", contentType: 'application/json',) String attributionSource = "feed",
+      @Part(value: "attributionDetails", contentType: 'application/json',) String attributionDetails="eyJpc19leHBsb3JlIjpmYWxzZSwicmFuayI6MX0="}
+      );
+
+  // check user existence in channel
+  @POST("/active_ping")
+  Future<BaseResponse> checkUserExistence(@Part(value: "channel", contentType: 'application/json',) String channel);
+
+  // accept user invite
+  @POST("/accept_speaker_invite")
+  Future<BaseResponse> acceptSpeakerInvite(@Part(value: "channel", contentType: 'application/json',) String channel,@Part(value: "user_id", contentType: 'application/json',) String userId);
+
+  // accept user invite
+  @POST("/audience_reply")
+  Future<BaseResponse> audienceReply(@Part(value: "channel", contentType: 'application/json',) String channel,
+      @Part(value: "raise_hands", contentType: 'application/json',) bool rise,
+      @Part(value: "unraise_hands", contentType: 'application/json',) bool unrise,
+      );
+
+
+
 }
