@@ -40,6 +40,7 @@ dependencies:
   countdown: ^0.1.0
   image_picker: ^0.6.7+22
   image: ^3.0.2
+  path_provider: ^2.0.1
 
   #visiual component
   country_code_picker: ^1.7.0
