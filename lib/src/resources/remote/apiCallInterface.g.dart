@@ -189,4 +189,68 @@ class _ApiCallInterface implements ApiCallInterface {
     final value = BaseResponse.fromJson(_result.data);
     return value;
   }
+
+  @override
+  Future<NotificationResponse> getNotifications(UserId, page,
+      {pageSize = 50}) async {
+    ArgumentError.checkNotNull(UserId, 'UserId');
+    ArgumentError.checkNotNull(page, 'page');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'user_id': UserId,
+      r'page': page,
+      r'page_size': pageSize
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>(
+        '/get_notifications',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = NotificationResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> getEvents(eventId) async {
+    ArgumentError.checkNotNull(eventId, 'eventId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (eventId != null) {
+      _data.fields.add(MapEntry('event_hashid', eventId));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/get_event',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<ChannelResponse> getChannels() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('/get_channels',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ChannelResponse.fromJson(_result.data);
+    return value;
+  }
 }

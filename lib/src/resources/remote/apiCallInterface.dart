@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:club_house/src/models/BaseResponse.dart';
+import 'package:club_house/src/models/Channel.dart';
+import 'package:club_house/src/models/Notification.dart';
 import 'package:club_house/src/models/SendSms.dart';
 import 'package:club_house/src/models/VerifySms.dart';
-import 'package:club_house/src/models/BaseResponse.dart';
 import 'package:club_house/src/models/WaitList.dart';
 import 'package:club_house/src/utils/const.dart';
 import 'package:dio/dio.dart';
@@ -59,4 +61,21 @@ abstract class ApiCallInterface {
   @POST("/update_username")
   @MultiPart()
   Future<BaseResponse> updatePropic(@Part(value: "file") File file);
+
+
+  /* <=============== Broadcast ===============> */
+
+  // get user notifications
+  @GET("/get_notifications")
+  Future<NotificationResponse> getNotifications(@Query('user_id') int UserId,@Query('page') int page,{@Query('page_size') int pageSize = 50});
+
+  // get user event
+  @POST("/get_event")
+  Future<BaseResponse> getEvents(@Part(value: "event_hashid", contentType: 'application/json',) String eventId);
+
+  // get user channels
+  @GET("/get_channels")
+  Future<ChannelResponse> getChannels();
+  
+
 }
