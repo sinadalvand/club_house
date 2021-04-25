@@ -1,13 +1,14 @@
 import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
 import 'package:club_house/src/view/common/routes.dart';
-import 'package:club_house/src/view/full_name_page.dart';
-import 'package:club_house/src/view/phone_number_page.dart';
-import 'package:club_house/src/view/phone_verify_page.dart';
-import 'package:club_house/src/view/pick_photo_page.dart';
-import 'package:club_house/src/view/username_page.dart';
-import 'package:club_house/src/view/waitlist_page.dart';
-import 'package:club_house/src/view/welcome_page.dart';
+import 'package:club_house/src/view/register/full_name_page.dart';
+import 'package:club_house/src/view/register/phone_number_page.dart';
+import 'file:///C:/Development/Projects/Flutter/club_house/lib/src/view/register/phone_verify_page.dart';
+import 'file:///C:/Development/Projects/Flutter/club_house/lib/src/view/register/pick_photo_page.dart';
+import 'package:club_house/src/view/register/username_page.dart';
+import 'package:club_house/src/view/register/waitlist_page.dart';
+import 'package:club_house/src/view/homepage/home_page.dart';
+import 'package:club_house/src/view/register/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:club_house/src/controller/ProfilePicturePickerController.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(true),
-      initialRoute: Director.REGISTER_PROPIC.route,
+      initialRoute: Director.MAIN_PAGE.route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => WelcomePageController());
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.REGISTER_PROPIC.route, page: () => PickPhotoPage(),binding: BindingsBuilder((){
           Get.lazyPut(() => ProfilePicturePickerController());
         })),
+        GetPage(name: Director.MAIN_PAGE.route, page: () => HomePage(),binding: BindingsBuilder((){
+          // Get.lazyPut(() => ProfilePicturePickerController());
+        })),
         // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
       ],
     );
@@ -57,6 +61,7 @@ class MyApp extends StatelessWidget {
     final theme = ThemeData(
       fontFamily: 'vazir',
       accentColor: colore.Colors.AccentBlue,
+      buttonColor: colore.Colors.AccentGreen,
       scaffoldBackgroundColor: colore.Colors.LightBrown,
       appBarTheme: AppBarTheme(
         color: colore.Colors.LightBrown,

@@ -2,7 +2,7 @@ import 'package:club_house/src/controller/UsernamePageController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'common/widget/register_next_button.dart';
+import '../common/widget/register_next_button.dart';
 
 class UsernamePage extends StatelessWidget {
   @override

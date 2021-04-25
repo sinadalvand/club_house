@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:club_house/src/view/common/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'common/widget/register_next_button.dart';
+import '../common/widget/register_next_button.dart';
 import 'package:get/get.dart';
 import 'package:club_house/src/controller/ProfilePicturePickerController.dart';
 

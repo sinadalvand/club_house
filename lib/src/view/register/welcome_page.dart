@@ -2,9 +2,9 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/WelcomePageController.dart';
-import 'common/routes.dart';
-import 'common/widget/register_next_button.dart';
+import '../../controller/WelcomePageController.dart';
+import '../common/routes.dart';
+import '../common/widget/register_next_button.dart';
 
 class WelcomePage extends StatelessWidget {
   @override

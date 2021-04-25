@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
-import 'common/widget/round_button.dart';
+import '../common/widget/round_button.dart';
 
 class PhoneNumberVerifyPage extends StatelessWidget {
   @override

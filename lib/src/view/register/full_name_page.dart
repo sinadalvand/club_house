@@ -3,7 +3,7 @@ import 'package:club_house/src/view/common/widget/register_next_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'common/widget/round_button.dart';
+import '../common/widget/round_button.dart';
 
 class FullNamePage extends StatelessWidget {
   @override
