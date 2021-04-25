@@ -109,6 +109,76 @@ class _ApiCallInterface implements ApiCallInterface {
   }
 
   @override
+  Future<FullUserResponse> getProfile(userid) async {
+    ArgumentError.checkNotNull(userid, 'userid');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (userid != null) {
+      _data.fields.add(MapEntry('user_id', userid.toString()));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/get_profile',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = FullUserResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<Followers> getFollowers(UserId, page, {pageSize = 50}) async {
+    ArgumentError.checkNotNull(UserId, 'UserId');
+    ArgumentError.checkNotNull(page, 'page');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'user_id': UserId,
+      r'page': page,
+      r'page_size': pageSize
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('/get_followers',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Followers.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<Following> getFollowing(UserId, page, {pageSize = 50}) async {
+    ArgumentError.checkNotNull(UserId, 'UserId');
+    ArgumentError.checkNotNull(page, 'page');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'user_id': UserId,
+      r'page': page,
+      r'page_size': pageSize
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>(
+        '/get_notifications',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Following.fromJson(_result.data);
+    return value;
+  }
+
+  @override
   Future<WaitList> isWaitList() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -169,6 +239,27 @@ class _ApiCallInterface implements ApiCallInterface {
   }
 
   @override
+  Future<BaseResponse> updateBio(bio) async {
+    ArgumentError.checkNotNull(bio, 'bio');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (bio != null) {
+      _data.fields.add(MapEntry('bio', bio));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/update_bio',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
   Future<BaseResponse> updatePropic(file) async {
     ArgumentError.checkNotNull(file, 'file');
     const _extra = <String, dynamic>{};
@@ -179,6 +270,80 @@ class _ApiCallInterface implements ApiCallInterface {
         MultipartFile.fromFileSync(file.path,
             filename: file.path.split(Platform.pathSeparator).last)));
     final _result = await _dio.request<Map<String, dynamic>>('/update_username',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> inviteUserToApp(phone, {name = "", message = ""}) async {
+    ArgumentError.checkNotNull(phone, 'phone');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = FormData();
+    if (phone != null) {
+      _data.fields.add(MapEntry('phone_number', phone));
+    }
+    if (name != null) {
+      _data.fields.add(MapEntry('name', name));
+    }
+    if (message != null) {
+      _data.fields.add(MapEntry('message', message));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/invite_to_app',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> followUser(bio, {source = 4}) async {
+    ArgumentError.checkNotNull(bio, 'bio');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = FormData();
+    if (bio != null) {
+      _data.fields.add(MapEntry('user_id', bio));
+    }
+    if (source != null) {
+      _data.fields.add(MapEntry('source', source.toString()));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/follow',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> unfollowUser(bio) async {
+    ArgumentError.checkNotNull(bio, 'bio');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (bio != null) {
+      _data.fields.add(MapEntry('user_id', bio));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/unfollow',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'POST',

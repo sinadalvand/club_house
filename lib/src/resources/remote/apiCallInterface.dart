@@ -4,8 +4,10 @@ import 'package:club_house/src/models/BaseResponse.dart';
 import 'package:club_house/src/models/Channel.dart';
 import 'package:club_house/src/models/Notification.dart';
 import 'package:club_house/src/models/SendSms.dart';
+import 'package:club_house/src/models/User.dart';
 import 'package:club_house/src/models/VerifySms.dart';
 import 'package:club_house/src/models/WaitList.dart';
+import 'package:club_house/src/models/Followers.dart';
 import 'package:club_house/src/utils/const.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -45,22 +47,54 @@ abstract class ApiCallInterface {
 
   /* <=============== Profile ===============> */
 
+  // get user profile
+  @POST("/get_profile")
+  Future<FullUserResponse> getProfile(@Part(value: "user_id", contentType: 'application/json',) int userid);
+
+  // get user followers
+  @GET("/get_followers")
+  Future<Followers> getFollowers(@Query('user_id') int UserId,@Query('page') int page,{@Query('page_size') int pageSize = 50});
+
+  // get user following
+  @GET("/get_notifications")
+  Future<Following> getFollowing(@Query('user_id') int UserId,@Query('page') int page,{@Query('page_size') int pageSize = 50});
+
   // check user is in wait list for receive an invite
   @POST("/check_waitlist_status")
   Future<WaitList> isWaitList();
 
-  // update user name
+  // update name of user
   @POST("/update_name")
   Future<BaseResponse> updateName(@Part(value: "name", contentType: 'application/json',) String name);
 
-  // update user name
+  // update username
   @POST("/update_username")
   Future<BaseResponse> updateUserName(@Part(value: "username", contentType: 'application/json',) String username);
+
+  // update Bio
+  @POST("/update_bio")
+  Future<BaseResponse> updateBio(@Part(value: "bio", contentType: 'application/json',) String bio);
 
   // update user propic
   @POST("/update_username")
   @MultiPart()
   Future<BaseResponse> updatePropic(@Part(value: "file") File file);
+
+  // invite user to app
+  @POST("/invite_to_app")
+  Future<BaseResponse> inviteUserToApp(
+      @Part(value: "phone_number", contentType: 'application/json',) String phone,
+      {@Part(value: "name", contentType: 'application/json',) String name="",
+      @Part(value: "message", contentType: 'application/json',) String message=""}
+      );
+
+  // follow user
+  @POST("/follow")
+  Future<BaseResponse> followUser(@Part(value: "user_id", contentType: 'application/json',) int userId,{@Part(value: "source", contentType: 'application/json',) int source=4});
+
+  // unfollow user
+  @POST("/unfollow")
+  Future<BaseResponse> unfollowUser(@Part(value: "user_id", contentType: 'application/json',) int userId);
 
 
   /* <=============== Broadcast ===============> */
@@ -76,6 +110,6 @@ abstract class ApiCallInterface {
   // get user channels
   @GET("/get_channels")
   Future<ChannelResponse> getChannels();
-  
+
 
 }
