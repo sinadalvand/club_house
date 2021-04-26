@@ -10,8 +10,9 @@ class VerifySms {
   bool is_waitlisted;
   String auth_token,access_token,refresh_token;
   User user_profile;
+  bool is_verified;
 
-  VerifySms(this.is_waitlisted, this.auth_token, this.access_token, this.refresh_token, this.user_profile);
+  VerifySms(this.is_waitlisted, this.auth_token, this.access_token, this.refresh_token, this.user_profile,this.is_verified);
 
   factory VerifySms.fromJson(Map<String, dynamic> json) => _$VerifySmsFromJson(json);
 
