@@ -186,6 +186,6 @@ class PhoneNumberVerifyPage extends StatelessWidget {
   }
 
   _gotoNextPage(Director director) {
-    Get.off(director);
+    Get.offNamed(director.route);
   }
 }
