@@ -6,16 +6,16 @@ class Session {
 
   Session(this._val);
 
-  String token, userID, deviceId;
+  String deviceId;
 
   load() {
-    token = _checkUUidExistence();
+    deviceId = _checkUUidExistence();
   }
 
   // check old Id exist , if not then create newone
   String _checkUUidExistence() {
-    var temp_token = _val.token;
-    return temp_token == null ? (_val.token = _generateUUID()) : temp_token;
+    var temp_token = _val.device_id;
+    return temp_token == null ? (_val.device_id = _generateUUID()) : temp_token;
   }
 
   // generate unique ID for every device
