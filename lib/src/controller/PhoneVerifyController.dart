@@ -74,7 +74,7 @@ class PhoneVerifyController extends Controller {
       // 1- save user token
       valutor.token = value.auth_token;
       // 2- save user id
-      valutor.user_id = value.user_profile?.user_id?.toString() ?? "";
+      valutor.user_id = value.user_profile?.user_id?.toString() ?? -1;
       // 3- is waited list
       valutor.waitedlist = value.is_waitlisted;
 
