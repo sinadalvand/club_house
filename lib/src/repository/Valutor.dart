@@ -13,8 +13,8 @@ class Valutor {
 
 
   final USER_ID_KEY = "user_id";
-  String get user_id =>  _pref.read(USER_ID_KEY);
-  set user_id(String user_id) => _pref.write(USER_ID_KEY, user_id);
+  int get user_id =>  _pref.read(USER_ID_KEY);
+  set user_id(int user_id) => _pref.write(USER_ID_KEY, user_id);
 
 
   final TOKEN_KEY = "token";
