@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:club_house/src/controller/ProfilePicturePickerController.dart';
 import 'package:club_house/src/controller/MainPageController.dart';
+import 'package:club_house/src/controller/ProfilePageController.dart';
 import 'controller/FullnamePageController.dart';
 import 'controller/PhonePageController.dart';
 import 'controller/PhoneVerifyController.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
           Get.lazyPut(() => MainPageController());
         })),
         GetPage(name: Director.PROFILE.route, page: () => ProfilePage(profile: myProfile,),binding: BindingsBuilder((){
-          // Get.lazyPut(() => ProfilePicturePickerController());
+          Get.lazyPut(() => ProfilePageController());
         })),
         // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
       ],
