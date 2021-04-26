@@ -418,4 +418,131 @@ class _ApiCallInterface implements ApiCallInterface {
     final value = ChannelResponse.fromJson(_result.data);
     return value;
   }
+
+  @override
+  Future<ChannelResponse> getChannel(channel) async {
+    ArgumentError.checkNotNull(channel, 'channel');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (channel != null) {
+      _data.fields.add(MapEntry('channel', channel));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/get_channel',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ChannelResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<Channel> joinChannel(channel,
+      {attributionSource = "feed",
+      attributionDetails = "eyJpc19leHBsb3JlIjpmYWxzZSwicmFuayI6MX0="}) async {
+    ArgumentError.checkNotNull(channel, 'channel');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = FormData();
+    if (channel != null) {
+      _data.fields.add(MapEntry('channel', channel));
+    }
+    if (attributionSource != null) {
+      _data.fields.add(MapEntry('attributionSource', attributionSource));
+    }
+    if (attributionDetails != null) {
+      _data.fields.add(MapEntry('attributionDetails', attributionDetails));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/join_channel',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Channel.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> checkUserExistence(channel) async {
+    ArgumentError.checkNotNull(channel, 'channel');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (channel != null) {
+      _data.fields.add(MapEntry('channel', channel));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/active_ping',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> acceptSpeakerInvite(channel, userId) async {
+    ArgumentError.checkNotNull(channel, 'channel');
+    ArgumentError.checkNotNull(userId, 'userId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (channel != null) {
+      _data.fields.add(MapEntry('channel', channel));
+    }
+    if (userId != null) {
+      _data.fields.add(MapEntry('user_id', userId));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>(
+        '/accept_speaker_invite',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse> audienceReply(channel, rise, unrise) async {
+    ArgumentError.checkNotNull(channel, 'channel');
+    ArgumentError.checkNotNull(rise, 'rise');
+    ArgumentError.checkNotNull(unrise, 'unrise');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (channel != null) {
+      _data.fields.add(MapEntry('channel', channel));
+    }
+    if (rise != null) {
+      _data.fields.add(MapEntry('raise_hands', rise.toString()));
+    }
+    if (unrise != null) {
+      _data.fields.add(MapEntry('unraise_hands', unrise.toString()));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/audience_reply',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponse.fromJson(_result.data);
+    return value;
+  }
 }
