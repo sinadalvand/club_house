@@ -23,6 +23,12 @@ class Valutor {
     _pref.write(TOKEN_KEY, token);
   }
 
+  final DEVICE_ID_KEY = "device_id";
+  String get device_id => _pref.read(DEVICE_ID_KEY);
+  set device_id(String token) {
+    _pref.write(DEVICE_ID_KEY, token);
+  }
+
   final UNOFFICAL_WARNING_KEY = "unofficial_warning";
   bool get unofficial_warning_show => _pref.read(UNOFFICAL_WARNING_KEY) ?? true;
   set unofficial_warning_show(bool show) => _pref.write(UNOFFICAL_WARNING_KEY, show);
