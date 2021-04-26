@@ -20,12 +20,6 @@ class WelcomePage extends StatelessWidget {
           },
         );
 
-        // check for token and navigate
-        _.initCheck();
-
-        // go to another page in init time
-        ever(_.navigator, (director) => _gotoMainDesirePage(director));
-
         return Scaffold(
           appBar: AppBar(),
           body: Container(

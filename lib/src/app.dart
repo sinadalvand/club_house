@@ -1,3 +1,4 @@
+import 'package:club_house/src/repository/Valutor.dart';
 import 'package:club_house/src/utils/data.dart';
 import 'package:club_house/src/view/common/colors.dart' as colore;
 import 'package:club_house/src/view/common/lang/AppTranslation.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(true),
-      initialRoute: Director.PROFILE.route,
+      initialRoute: _getStartPage().route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => WelcomePageController());
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  // theme selector
   themeChooser(dark) {
     final theme = ThemeData(
       fontFamily: 'vazir',
@@ -96,5 +98,25 @@ class MyApp extends StatelessWidget {
             ),
           )
         : theme;
+  }
+
+  // start point
+  Director _getStartPage(){
+    Valutor valutor = Get.find();
+    var tokenExistance = valutor.token != null;
+    var isWaitlist = valutor.waitedlist;
+    var hasUsername = valutor.username != null;
+    var hasName = valutor.name != null;
+    if (!tokenExistance) {
+      return Director.WELCOME;
+    } else if (!hasName) {
+      return Director.REGISTER_NAME;
+    } else if (!hasUsername) {
+      return Director.REGISTER_USERNAME;
+    } else if (isWaitlist && !tokenExistance) {
+      return Director.WAIT_LIST;
+    } else {
+      return Director.MAIN_PAGE;
+    }
   }
 }
