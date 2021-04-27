@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:club_house/main.dart';
 import 'package:club_house/src/contracts/controller.dart';
 import 'package:club_house/src/repository/AuthRepository.dart';
 import 'package:club_house/src/view/common/routes.dart';
@@ -71,32 +72,43 @@ class PhoneVerifyController extends Controller {
 
   _verifyCode() {
     _authRepository.verifyCode(_phone, _code).then((value) {
-      // 1- save user token
-      valutor.token = value.auth_token;
-      // 2- save user id
-      valutor.user_id = value.user_profile?.user_id?.toString() ?? -1;
-      // 3- is waited list
-      valutor.waitedlist = value.is_waitlisted;
 
-      // save user name in pref
-      if (value.user_profile.name != null) valutor.username = value.user_profile.name;
+     if(value.is_verified){
+       // 1- save user token
+       valutor.token = value.auth_token;
+       // 2- save user id
+       valutor.user_id = value.user_profile?.user_id ?? -1;
+       // 3- is waited list
+       valutor.waitedlist = value.is_waitlisted;
 
-      // save username in pref
-      if (value.user_profile.username != null) valutor.username = value.user_profile.username;
+       // save user name in pref
+       if (value.user_profile.name != null)
+         valutor.name = value.user_profile.name;
 
-      // if is waited list go to waited list
-      // if username is in profile then go to register page
-      // if everything i ok then go to main page
-      if (valutor.name == null) {
-        director.value = Director.REGISTER_NAME;
-      } else if (valutor.username == null) {
-        director.value = Director.REGISTER_USERNAME;
-      } else if (valutor.waitedlist) {
-        director.value = Director.WAIT_LIST;
-      } else {
-        director.value = Director.MAIN_PAGE;
-      }
+       // save username in pref
+       if (value.user_profile.username != null)
+         valutor.username = value.user_profile.username;
+
+       // if is waited list go to waited list
+       // if username is in profile then go to register page
+       // if everything i ok then go to main page
+       if (valutor.name == null) {
+         director.value = Director.REGISTER_NAME;
+       } else if (valutor.username == null) {
+         director.value = Director.REGISTER_USERNAME;
+       } else if (valutor.waitedlist) {
+         director.value = Director.WAIT_LIST;
+       } else {
+         director.value = Director.MAIN_PAGE;
+       }
+     }else{
+       logger.e("timeout or wrong code");
+       // TODO show can't enter error
+     }
+
     }).onError((error, stackTrace) {
+      stackTrace.printInfo();
+      logger.e(error);
       //TODO handle error for verify
     });
   }

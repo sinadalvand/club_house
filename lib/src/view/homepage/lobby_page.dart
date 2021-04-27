@@ -1,3 +1,5 @@
+import 'package:club_house/src/controller/MainPageController.dart';
+import 'package:club_house/src/models/Channel.dart';
 import 'package:club_house/src/utils/data.dart';
 import 'package:club_house/src/view/common/widget/room_card.dart';
 import 'package:club_house/src/view/common/widget/round_button.dart';
@@ -6,23 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class LobbyPage extends StatefulWidget {
-  @override
-  _LobbyPageState createState() => _LobbyPageState();
-}
+class LobbyPage extends StatelessWidget {
 
-class _LobbyPageState extends State<LobbyPage> {
-  RefreshController _refreshController =
-  RefreshController(initialRefresh: false);
+  final MainPageController _controller;
+
+  LobbyPage(this._controller);
 
   void _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1000));
-    _refreshController.refreshCompleted();
+    _controller.refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
     await Future.delayed(Duration(milliseconds: 1000));
-    _refreshController.loadComplete();
+    _controller.refreshController.loadComplete();
   }
 
   @override
@@ -31,8 +30,9 @@ class _LobbyPageState extends State<LobbyPage> {
       alignment: Alignment.bottomCenter,
       children: [
         SmartRefresher(
+           enableTwoLevel: true,
           enablePullDown: true,
-          controller: _refreshController,
+          controller: _controller.refreshController,
           onRefresh: _onRefresh,
           onLoading: _onLoading,
           child: ListView.builder(
@@ -43,30 +43,34 @@ class _LobbyPageState extends State<LobbyPage> {
             ),
             itemBuilder: (lc, index) {
               if (index == 0) {
-                return buildScheduleCard();
+                return _buildScheduleCard();
               }
-              return buildRoomCard(rooms[index - 1]);
+              return buildRoomCard(_controller.channels[index-1]);
             },
-            // itemCount: rooms.length + 1,
-            itemCount: 2,
+            itemCount: _controller.channels.length+1,
           ),
         ),
         // buildGradientContainer(),
-        buildStartRoomButton(),
+        // buildStartRoomButton(),
       ],
     );
   }
 
-  Widget buildScheduleCard() {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: 10,
-      ),
-      child: ScheduleCard(),
-    );
+  Widget _buildScheduleCard() {
+    final eventsize = _controller.events.length;
+    if(eventsize>0){
+      return Container(
+        margin: const EdgeInsets.symmetric(
+          vertical: 10,
+        ),
+        child: ScheduleCard(_controller.events),
+      );
+    }else{
+      return Container();
+    }
   }
 
-  Widget buildRoomCard(Room room) {
+  Widget buildRoomCard(Channel channel) {
     return GestureDetector(
       onTap: () {
         // enterRoom(room);
@@ -76,7 +80,7 @@ class _LobbyPageState extends State<LobbyPage> {
           vertical: 10,
         ),
         child: RoomCard(
-          room: room,
+          channel: channel,
         ),
       ),
     );

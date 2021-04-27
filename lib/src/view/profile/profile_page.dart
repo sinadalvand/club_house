@@ -126,7 +126,7 @@ class ProfilePage extends StatelessWidget {
     return Row(
       children: [
         RoundImage(
-          path: 'assets/images/puzzleleaf.png',
+          path: 'assets/images/propic.jpg',
         ),
         SizedBox(
           width: 10,

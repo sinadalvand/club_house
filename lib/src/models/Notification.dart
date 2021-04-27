@@ -6,15 +6,17 @@ part 'Notification.g.dart';
 @JsonSerializable()
 class Notification {
   int notificationId;
-  bool in_unread;
-  //TODO active this part after create it
   User user_profile;
+  bool is_unread;
   int event_id;
+  // 1=> user 16=> event
   int type;
   DateTime time_created;
   String message;
 
-  Notification(this.notificationId, this.in_unread,this.event_id,this.type,this.time_created,this.message);
+  is_event()=> type == 16;
+
+  Notification(this.is_unread,this.notificationId,this.event_id,this.type,this.time_created,this.message);
 
   factory Notification.fromJson(Map<String, dynamic> json) => _$NotificationFromJson(json);
 

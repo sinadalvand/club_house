@@ -1,10 +1,11 @@
+import 'package:club_house/src/models/Channel.dart';
 import 'package:club_house/src/view/common/widget/round_image.dart';
 import 'package:club_house/src/utils/data.dart';
 import 'package:flutter/material.dart';
 
 class RoomCard extends StatelessWidget {
-  final Room room;
-  const RoomCard({Key key, this.room}) : super(key: key);
+  final Channel channel;
+  const RoomCard({Key key, this.channel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class RoomCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            room.title,
+            channel.topic??"",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -63,17 +64,22 @@ class RoomCard extends StatelessWidget {
       children: [
         RoundImage(
           margin: const EdgeInsets.only(top: 15, right: 25),
-          path: room.users[1].profileImage,
+          url: channel.users[0].photo_url,
         ),
         RoundImage(
-          path: room.users[0].profileImage,
+          url: channel.users[1].photo_url,
+        ),
+        if(channel.users.length>2)
+        RoundImage(
+          margin: const EdgeInsets.only(top: 30),
+          url: channel.users[2].photo_url,
         ),
       ],
     );
   }
 
   Widget buildUserList() {
-    var len = room.users.length > 4 ? 4 : room.users.length;
+    var len = channel.users.length > 4 ? 4 : channel.users.length;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +89,7 @@ class RoomCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  room.users[i].name,
+                  channel.users[i].name,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -108,7 +114,7 @@ class RoomCard extends StatelessWidget {
     return Row(
       children: [
         Text(
-          '${room.users.length}',
+          '${channel.users.length}',
           style: TextStyle(
             color: Colors.grey,
           ),
@@ -126,7 +132,7 @@ class RoomCard extends StatelessWidget {
           ),
         ),
         Text(
-          '${room.speakerCount}',
+          '${channel.num_all}',
           style: TextStyle(
             color: Colors.grey,
           ),

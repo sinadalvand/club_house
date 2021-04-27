@@ -1,9 +1,15 @@
-import 'package:club_house/src/utils/data.dart';
+import 'package:club_house/src/models/Notification.dart'as Notif;
 import 'package:flutter/material.dart';
 import 'package:club_house/src/view/common/colors.dart' as Colory;
 import 'package:get/get.dart';
+import 'dart:math';
 
 class ScheduleCard extends StatelessWidget {
+
+  final List<Notif.Notification> _events ;
+
+  ScheduleCard(this._events);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,10 +24,10 @@ class ScheduleCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (var i = 0, len = 3; i < len; i++)
+          for (var i = 0, len = min(_events.length, 3); i < len; i++)
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: buildScheduleItem('0${7 + i}:00 PM', dummyText),
+              child: buildScheduleItem('0${7 + i}:00 PM', _events[i].message),
             )
         ],
       ),
