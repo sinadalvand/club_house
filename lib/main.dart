@@ -1,26 +1,15 @@
+import 'package:club_house/src/app.dart';
+import 'package:club_house/src/di/inject.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:logger/logger.dart';
 
-void main() {
+var logger = Logger();
+
+void main() async {
+  await GetStorage.init();
+
+  Inject().inject();
+
   runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            "Start of ClubHouse",
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
-      ),
-    );
-  }
 }
