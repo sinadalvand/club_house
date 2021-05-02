@@ -5,7 +5,6 @@ import 'package:club_house/src/view/common/widget/round_image.dart';
 import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
-
   FullUser profile;
 
   @override
@@ -63,11 +62,14 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Text(
-              '@'+profile.username,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Text(
+                '@' + profile.username,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             SizedBox(
@@ -75,6 +77,7 @@ class ProfilePage extends StatelessWidget {
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RichText(
                   text: TextSpan(
@@ -142,8 +145,10 @@ class ProfilePage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('joined'.trParams({'date':profile.getJoinTime()})),
-            SizedBox(height: 3,),
+            Text('joined'.trParams({'date': profile.getJoinTime()})),
+            SizedBox(
+              height: 3,
+            ),
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
