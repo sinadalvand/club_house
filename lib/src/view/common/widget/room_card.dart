@@ -1,6 +1,6 @@
 import 'package:club_house/src/models/Channel.dart';
+import 'package:club_house/src/utils/Utils.dart';
 import 'package:club_house/src/view/common/widget/round_image.dart';
-import 'package:club_house/src/utils/data.dart';
 import 'package:flutter/material.dart';
 
 class RoomCard extends StatelessWidget {
@@ -59,11 +59,15 @@ class RoomCard extends StatelessWidget {
     );
   }
 
+  double _isRtl(){
+    Utils.isRtl();
+  }
+
   Widget buildProfileImages() {
     return Stack(
       children: [
         RoundImage(
-          margin: const EdgeInsets.only(top: 15, right: 25),
+          margin:  EdgeInsets.only(top: 15, right: Utils.isRtl() ? 25 : 0 , left: Utils.isRtl() ? 0 : 25 ),
           url: channel.users[0].photo_url,
         ),
         RoundImage(
