@@ -352,6 +352,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -359,6 +366,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.5"
+  jalali_calendar:
+    dependency: "direct main"
+    description:
+      name: jalali_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
+  jiffy:
+    dependency: transitive
+    description:
+      name: jiffy
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
   js:
     dependency: transitive
     description:
