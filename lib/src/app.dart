@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.MAIN_PAGE.route, page: () => HomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => MainPageController());
         })),
-        GetPage(name: Director.PROFILE.route, page: () => ProfilePage(profile: myProfile,),binding: BindingsBuilder((){
+        GetPage(name: Director.PROFILE.route, page: () => ProfilePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => ProfilePageController());
         })),
         // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),

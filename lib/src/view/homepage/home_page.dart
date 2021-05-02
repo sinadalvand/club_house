@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
           appBar: AppBar(
             title: HomeAppBar(
               profile: controller.profile,
-              onProfileTab: () => Get.toNamed(Director.PROFILE.route),
+              onProfileTab: () => Get.toNamed(Director.PROFILE.route, arguments: controller.profile),
             ),
           ),
           body: LobbyPage(controller),

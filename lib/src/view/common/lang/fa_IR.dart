@@ -34,4 +34,6 @@ final fa_IR = {
   'name_should_be_more_than_2_char':'نام باید بیشتر از 2 کاراگتر باشد.',
   'family_should_be_more_than_2_char':'نام خانوادگی باید بیشتر از 2 کاراگتر باشد.',
   'check_and_go':'بررسی و ثبت',
+  'nominated_by':'دعوت شده توسط ',
+  'joined':'عضو شده در تاریخ @date',
 };
