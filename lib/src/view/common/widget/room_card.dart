@@ -67,7 +67,7 @@ class RoomCard extends StatelessWidget {
     return Stack(
       children: [
         RoundImage(
-          margin:  EdgeInsets.only(top: 15, right: Utils.isRtl() ? 25 : 0 , left: Utils.isRtl() ? 0 : 25 ),
+          margin: EdgeInsets.only(top: 15, right: Utils.isRtl() ? 25 : 0, left: Utils.isRtl() ? 0 : 25),
           url: channel.users[0].photo_url,
         ),
         RoundImage(
