@@ -123,7 +123,7 @@ class ProfilePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            dummyText,
+            profile.bio??"",
             style: TextStyle(
               fontSize: 15,
             ),
