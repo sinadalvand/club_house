@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class RoomCard extends StatelessWidget {
   final Channel channel;
+
   const RoomCard({Key key, this.channel}) : super(key: key);
 
   @override
@@ -14,20 +15,17 @@ class RoomCard extends StatelessWidget {
         horizontal: 20,
         vertical: 20,
       ),
-      decoration: BoxDecoration(
-          color: Colors.black12,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              offset: Offset(0, 1),
-            )
-          ]),
+      decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(20), boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          offset: Offset(0, 1),
+        )
+      ]),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            channel.topic??"",
+            channel.topic ?? "",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -42,25 +40,25 @@ class RoomCard extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildUserList(),
-                  SizedBox(
-                    height: 5,
+              Expanded(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildUserList(),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      buildRoomInfo(),
+                    ],
                   ),
-                  buildRoomInfo(),
-                ],
+                ),
               ),
             ],
           )
         ],
       ),
     );
-  }
-
-  double _isRtl(){
-    Utils.isRtl();
   }
 
   Widget buildProfileImages() {
@@ -73,18 +71,17 @@ class RoomCard extends StatelessWidget {
         RoundImage(
           url: channel.users[1].photo_url,
         ),
-        if(channel.users.length>2)
-        RoundImage(
-          margin: const EdgeInsets.only(top: 30),
-          url: channel.users[2].photo_url,
-        ),
+        if (channel.users.length > 2)
+          RoundImage(
+            margin: const EdgeInsets.only(top: 30),
+            url: channel.users[2].photo_url,
+          ),
       ],
     );
   }
 
   Widget buildUserList() {
     var len = channel.users.length > 4 ? 4 : channel.users.length;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -92,11 +89,16 @@ class RoomCard extends StatelessWidget {
           Container(
             child: Row(
               children: [
-                Text(
-                  channel.users[i].name,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                Flexible(
+                  child: Container(
+                    child: Text(
+                      channel.users[i].name,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
