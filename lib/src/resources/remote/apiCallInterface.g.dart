@@ -545,4 +545,46 @@ class _ApiCallInterface implements ApiCallInterface {
     final value = BaseResponse.fromJson(_result.data);
     return value;
   }
+
+  @override
+  Future<SearchClub> searchClubs(word) async {
+    ArgumentError.checkNotNull(word, 'word');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (word != null) {
+      _data.fields.add(MapEntry('query', word));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/search_clubs',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = SearchClub.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<SearchUser> searchPeople(word) async {
+    ArgumentError.checkNotNull(word, 'word');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    if (word != null) {
+      _data.fields.add(MapEntry('query', word));
+    }
+    final _result = await _dio.request<Map<String, dynamic>>('/search_users',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = SearchUser.fromJson(_result.data);
+    return value;
+  }
 }
