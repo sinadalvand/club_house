@@ -37,4 +37,5 @@ final en_US = {
   'check_and_go':'Check & Go',
   'nominated_by':'Nominated by ',
   'joined':'Joined @date',
+  'search':'Search',
 };

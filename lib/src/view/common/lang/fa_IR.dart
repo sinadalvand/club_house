@@ -36,4 +36,5 @@ final fa_IR = {
   'check_and_go':'بررسی و ثبت',
   'nominated_by':'دعوت شده توسط ',
   'joined':'عضو شده در تاریخ @date',
+  'search':'جستجو',
 };

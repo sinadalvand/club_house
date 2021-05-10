@@ -12,8 +12,8 @@ class AppTranslation extends Translations {
     _setupDateParser();
   }
 
-  static final locale = Locale('en', 'US');
-  // static final locale = Locale('fa', 'IR');
+  // static final locale = Locale('en', 'US');
+  static final locale = Locale('fa', 'IR');
 
   static final fallbackLocale = Locale('en', 'US');
 

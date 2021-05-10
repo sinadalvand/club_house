@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:club_house/src/controller/MainPageController.dart';
 import 'package:club_house/src/models/User.dart';
 import 'package:club_house/src/utils/data.dart';
+import 'package:club_house/src/view/common/routes.dart';
 import 'package:club_house/src/view/common/widget/round_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,9 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Container(
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(Director.SEARCH.route);
+            },
             iconSize: 30,
             icon: Icon(Icons.search),
           ),
