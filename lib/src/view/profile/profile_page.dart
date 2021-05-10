@@ -43,12 +43,14 @@ class ProfilePage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RoundImage(
-              url: profile.photo_url,
-              width: 100,
-              height: 100,
-              borderRadius: 35,
-            ),
+            Hero(
+                tag: "profile_picture",
+                child: RoundImage(
+                  url: profile.photo_url,
+                  width: 100,
+                  height: 100,
+                  borderRadius: 35,
+                )),
             SizedBox(
               height: 20,
             ),
@@ -123,7 +125,7 @@ class ProfilePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            profile.bio??"",
+            profile.bio ?? "",
             style: TextStyle(
               fontSize: 15,
             ),

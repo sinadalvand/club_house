@@ -49,11 +49,13 @@ class HomeAppBar extends StatelessWidget {
             ),
             GestureDetector(
               onTap: onProfileTab,
-              child:
-              RoundImage(
-                url: profile.photo_url??"",
-                width: 40,
-                height: 40,
+              child: Hero(
+                tag: 'profile_picture',
+                child: RoundImage(
+                  url: profile.photo_url ?? "",
+                  width: 40,
+                  height: 40,
+                ),
               ),
             )
           ],
@@ -62,13 +64,15 @@ class HomeAppBar extends StatelessWidget {
     );
   }
 
-
   Widget _notificationBudgetCreator() {
     final unreadNotif = Get.find<MainPageController>().UnreadNotifCounter;
     if (unreadNotif > 0)
       return Badge(
         position: BadgePosition.topStart(top: 5, start: 5),
-        badgeContent: Text(unreadNotif.toString(), style: TextStyle(fontSize: 10),),
+        badgeContent: Text(
+          unreadNotif.toString(),
+          style: TextStyle(fontSize: 10),
+        ),
         toAnimate: true,
         child: IconButton(
           onPressed: () {},
@@ -78,9 +82,9 @@ class HomeAppBar extends StatelessWidget {
       );
     else
       return IconButton(
-      onPressed: () {},
-      iconSize: 30,
-      icon: Icon(Icons.notifications_active_outlined),
-    );
+        onPressed: () {},
+        iconSize: 30,
+        icon: Icon(Icons.notifications_active_outlined),
+      );
   }
 }
