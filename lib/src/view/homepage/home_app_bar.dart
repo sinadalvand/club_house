@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:club_house/src/controller/MainPageController.dart';
 import 'package:club_house/src/models/User.dart';
 import 'package:club_house/src/utils/data.dart';
+import 'package:club_house/src/view/common/routes.dart';
 import 'package:club_house/src/view/common/widget/round_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,9 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Container(
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(Director.SEARCH.route);
+            },
             iconSize: 30,
             icon: Icon(Icons.search),
           ),
@@ -49,11 +52,13 @@ class HomeAppBar extends StatelessWidget {
             ),
             GestureDetector(
               onTap: onProfileTab,
-              child:
-              RoundImage(
-                url: profile.photo_url??"",
-                width: 40,
-                height: 40,
+              child: Hero(
+                tag: 'profile_picture',
+                child: RoundImage(
+                  url: profile.photo_url ?? "",
+                  width: 40,
+                  height: 40,
+                ),
               ),
             )
           ],
@@ -62,13 +67,15 @@ class HomeAppBar extends StatelessWidget {
     );
   }
 
-
   Widget _notificationBudgetCreator() {
     final unreadNotif = Get.find<MainPageController>().UnreadNotifCounter;
     if (unreadNotif > 0)
       return Badge(
         position: BadgePosition.topStart(top: 5, start: 5),
-        badgeContent: Text(unreadNotif.toString(), style: TextStyle(fontSize: 10),),
+        badgeContent: Text(
+          unreadNotif.toString(),
+          style: TextStyle(fontSize: 10),
+        ),
         toAnimate: true,
         child: IconButton(
           onPressed: () {},
@@ -78,9 +85,9 @@ class HomeAppBar extends StatelessWidget {
       );
     else
       return IconButton(
-      onPressed: () {},
-      iconSize: 30,
-      icon: Icon(Icons.notifications_active_outlined),
-    );
+        onPressed: () {},
+        iconSize: 30,
+        icon: Icon(Icons.notifications_active_outlined),
+      );
   }
 }

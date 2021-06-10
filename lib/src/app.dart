@@ -11,12 +11,14 @@ import 'package:club_house/src/view/register/username_page.dart';
 import 'package:club_house/src/view/profile/profile_page.dart';
 import 'package:club_house/src/view/register/waitlist_page.dart';
 import 'package:club_house/src/view/homepage/home_page.dart';
+import 'package:club_house/src/view/homepage/SearchPage.dart';
 import 'package:club_house/src/view/register/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:club_house/src/controller/ProfilePicturePickerController.dart';
 import 'package:club_house/src/controller/MainPageController.dart';
 import 'package:club_house/src/controller/ProfilePageController.dart';
+import 'package:club_house/src/controller/SearchPageController.dart';
 import 'controller/FullnamePageController.dart';
 import 'controller/PhonePageController.dart';
 import 'controller/PhoneVerifyController.dart';
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: AppTranslation.fallbackLocale,
       translations: AppTranslation(),
       theme: themeChooser(true),
-      initialRoute: _getStartPage().route,
+      initialRoute: Director.MAIN_PAGE.route, //_getStartPage().route,
       getPages: [
         GetPage(name: Director.WELCOME.route, page: () => WelcomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => WelcomePageController());
@@ -57,8 +59,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: Director.MAIN_PAGE.route, page: () => HomePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => MainPageController());
         })),
-        GetPage(name: Director.PROFILE.route, page: () => ProfilePage(profile: myProfile,),binding: BindingsBuilder((){
+        GetPage(name: Director.PROFILE.route, page: () => ProfilePage(),binding: BindingsBuilder((){
           Get.lazyPut(() => ProfilePageController());
+        })),
+        GetPage(name: Director.SEARCH.route, page: () => SearchPage(),binding: BindingsBuilder((){
+          Get.lazyPut(() => SearchPageController());
         })),
         // GetPage(name: Director.WAIT_LIST.route, page: () => WaitListPage()),
       ],

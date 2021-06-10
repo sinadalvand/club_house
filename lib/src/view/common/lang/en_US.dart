@@ -35,4 +35,7 @@ final en_US = {
   'name_should_be_more_than_2_char':'Name should be more than 2 char',
   'family_should_be_more_than_2_char':'Family should be more than 2 char',
   'check_and_go':'Check & Go',
+  'nominated_by':'Nominated by ',
+  'joined':'Joined @date',
+  'search':'Search',
 };

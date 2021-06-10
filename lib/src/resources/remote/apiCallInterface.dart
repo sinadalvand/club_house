@@ -7,6 +7,8 @@ import 'package:club_house/src/models/SendSms.dart';
 import 'package:club_house/src/models/User.dart';
 import 'package:club_house/src/models/VerifySms.dart';
 import 'package:club_house/src/models/WaitList.dart';
+import 'package:club_house/src/models/SearchUser.dart';
+import 'package:club_house/src/models/SearchClub.dart';
 import 'package:club_house/src/models/Followers.dart';
 import 'package:club_house/src/utils/const.dart';
 import 'package:dio/dio.dart';
@@ -141,6 +143,14 @@ abstract class ApiCallInterface {
       @Part(value: "unraise_hands", contentType: 'application/json',) bool unrise,
       );
 
+
+  /* <=============== Search ===============> */
+
+  @POST("/search_clubs")
+  Future<SearchClub> searchClubs(@Part(value: "query", contentType: 'application/json',) String word);
+
+  @POST("/search_users")
+  Future<SearchUser> searchPeople(@Part(value: "query", contentType: 'application/json',) String word);
 
 
 }

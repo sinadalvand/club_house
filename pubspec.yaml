@@ -42,6 +42,7 @@ dependencies:
   image: ^3.0.2
   path_provider: ^2.0.1
   badges: ^1.2.0
+  jalali_calendar: ^1.0.4
 
   #visiual component
   country_code_picker: ^1.7.0
