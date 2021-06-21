@@ -43,6 +43,8 @@ dependencies:
   path_provider: ^2.0.1
   badges: ^1.2.0
   jalali_calendar: ^1.0.4
+  shimmer: ^2.0.0
+  flutter_spinkit: ^4.1.2
 
   #visiual component
   country_code_picker: ^1.7.0
@@ -61,7 +63,7 @@ dependency_overrides:
 
 flutter:
   assets:
-    - assets/images/propic.jpg
+    - assets/images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
