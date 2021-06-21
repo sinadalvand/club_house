@@ -15,7 +15,7 @@ class MainPageController extends Controller {
   RefreshController refreshController = RefreshController(initialRefresh: false);
 
   // user channel after fetch
-  List<Channel> channels = [];
+  List<Channel> channels = null;
 
   // first page of user notification
   List<Notification> notifications = [];
@@ -36,6 +36,7 @@ class MainPageController extends Controller {
   _requestInitData() {
     _profileRepository.getProfile(valutor.user_id).asStream().asyncMap((event) {
       profile = event;
+      update();
       return _broadcastRepository.getChannels();
     }).asyncMap((event) {
       channels = event;
