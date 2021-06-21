@@ -17,6 +17,24 @@ class LobbyBottomSheet extends StatefulWidget {
 class _LobbyBottomSheetState extends State<LobbyBottomSheet> {
   var selectedButtonIndex = 0;
 
+  List lobbyBottomSheets = [
+    {
+      'image': 'assets/images/open.png',
+      'text': 'open'.tr,
+      'selectedMessage': 'open_room_desc'.tr,
+    },
+    {
+      'image': 'assets/images/social.png',
+      'text': 'social'.tr,
+      'selectedMessage': 'social_room_desc'.tr,
+    },
+    {
+      'image': 'assets/images/closed.png',
+      'text': 'closed'.tr,
+      'selectedMessage': 'closed_room_desc'.tr,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +60,7 @@ class _LobbyBottomSheetState extends State<LobbyBottomSheet> {
             ),
             alignment: Alignment.centerRight,
             child: Text(
-              '+ Add a Topic',
+              'add_topic'.tr,
               style: TextStyle(
                 color: Get.theme.buttonColor,
                 fontWeight: FontWeight.bold,
@@ -69,10 +87,14 @@ class _LobbyBottomSheetState extends State<LobbyBottomSheet> {
                       vertical: 5,
                     ),
                     decoration: BoxDecoration(
-                        color: i == selectedButtonIndex ? Colory.Colors.SelectedItemGrey : Colors.transparent,
+                        color: i == selectedButtonIndex
+                            ? Colory.Colors.SelectedItemGrey.withOpacity(0.5)
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(
-                          color: i == selectedButtonIndex ? Colory.Colors.SelectedItemBorderGrey                             : Colors.transparent,
+                          color: i == selectedButtonIndex
+                              ? Colory.Colors.SelectedItemBorderGrey
+                              : Colors.transparent,
                         )),
                     child: Column(
                       children: [
@@ -116,7 +138,7 @@ class _LobbyBottomSheetState extends State<LobbyBottomSheet> {
           RoundButton(
             color: Get.theme.buttonColor,
             onPressed: widget.onButtonTap,
-            text: '🎉 Let\'s go',
+            text: 'lets_go'.tr,
           )
         ],
       ),
