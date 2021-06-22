@@ -1,7 +1,9 @@
 import 'package:club_house/src/controller/MainPageController.dart';
 import 'package:club_house/src/models/Channel.dart';
 import 'package:club_house/src/utils/data.dart';
+import 'package:club_house/src/view/common/widget/lobby_bottom_sheet.dart';
 import 'package:club_house/src/view/common/widget/room_card.dart';
+import 'package:club_house/src/view/room/room_Page.dart';
 import 'package:club_house/src/view/common/widget/round_button.dart';
 import 'package:club_house/src/view/common/widget/schedule_card.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class LobbyPage extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         SmartRefresher(
-           enableTwoLevel: true,
+          enableTwoLevel: true,
           enablePullDown: true,
           controller: _controller.refreshController,
           onRefresh: _onRefresh,
@@ -45,27 +47,27 @@ class LobbyPage extends StatelessWidget {
               if (index == 0) {
                 return _buildScheduleCard();
               }
-              return buildRoomCard(_controller.channels[index-1]);
+              return buildRoomCard(_controller.channels[index - 1]);
             },
-            itemCount: _controller.channels.length+1,
+            itemCount: _controller.channels.length + 1,
           ),
         ),
-        // buildGradientContainer(),
-        // buildStartRoomButton(),
+        buildGradientContainer(),
+        buildStartRoomButton(context),
       ],
     );
   }
 
   Widget _buildScheduleCard() {
     final eventsize = _controller.events.length;
-    if(eventsize>0){
+    if (eventsize > 0) {
       return Container(
         margin: const EdgeInsets.symmetric(
           vertical: 10,
         ),
         child: ScheduleCard(_controller.events),
       );
-    }else{
+    } else {
       return Container();
     }
   }
@@ -91,67 +93,70 @@ class LobbyPage extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Get.theme.buttonColor.withOpacity(0.0),
-              Get.theme.buttonColor,
-            ],
-          )),
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Get.theme.scaffoldBackgroundColor.withOpacity(0.0),
+          Get.theme.scaffoldBackgroundColor,
+        ],
+      )),
     );
   }
 
-  Widget buildStartRoomButton() {
+  Widget buildStartRoomButton(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       child: RoundButton(
           onPressed: () {
-            // showBottomSheet();
+            showBottomSheet(context);
           },
           color: Get.theme.buttonColor,
-          text: '+ Start a room'),
+          text: 'start_room'.tr),
     );
   }
 
-  // enterRoom(Room room) {
-  //   showModalBottomSheet(
-  //     isScrollControlled: true,
-  //     context: context,
-  //     builder: (rc) {
-  //       return RoomPage(
-  //         room: room,
-  //       );
-  //     },
-  //   );
-  // }
+  enterRoom(BuildContext context, Channel room) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (rc) {
+        return RoomPage(
+          room: room,
+        );
+      },
+    );
+  }
 
-  // showBottomSheet() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //           topLeft: Radius.circular(15),
-  //           topRight: Radius.circular(15),
-  //         )),
-  //     builder: (context) {
-  //       return Wrap(
-  //         children: [
-  //           LobbyBottomSheet(
-  //             onButtonTap: () {
-  //               Navigator.pop(context);
-  //
-  //               enterRoom(
-  //                 Room(
-  //                   title: '${myProfile.name}\'s Room',
-  //                   users: [myProfile],
-  //                   speakerCount: 1,
-  //                 ),
-  //               );
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
+  showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
+      context: context,
+      isDismissible: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
+      builder: (context) {
+        return Wrap(
+          children: [
+            LobbyBottomSheet(
+              onButtonTap: () {
+                // Navigator.pop(context);
+                // enterRoom(
+                //   context,
+                //   Room(
+                //     title: '${myProfile.name}\'s Room',
+                //     users: [myProfile],
+                //     speakerCount: 1,
+                //   ),
+                // );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
