@@ -9,7 +9,7 @@ part 'User.g.dart';
 
 @JsonSerializable()
 class User {
-  int user_id;
+  var user_id;
   String name;
   String photo_url;
   String username;
@@ -23,7 +23,7 @@ class User {
 
 @JsonSerializable()
 class FullUser {
-  int user_id;
+  var user_id;
   String name;
   String photo_url;
   String username;

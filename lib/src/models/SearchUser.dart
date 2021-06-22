@@ -6,7 +6,7 @@ part 'SearchUser.g.dart';
 @JsonSerializable()
 class SearchUser {
   int count;
-  List<User> users;
+  List<FullUser> users;
 
   SearchUser(this.count, this.users);
 

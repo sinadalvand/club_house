@@ -6,7 +6,7 @@ part 'Club.g.dart';
 @JsonSerializable()
 class Club {
 
-   int club_id;
+   var club_id;
    String description;
    bool is_follow_allowed;
    bool is_membership_private;
