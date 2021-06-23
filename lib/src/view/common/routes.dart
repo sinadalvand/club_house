@@ -11,6 +11,8 @@ enum Director {
   REGISTER_PROPIC,
   PROFILE,
   SEARCH,
+  NOTIFICATION,
+  INVITE,
 }
 
 extension DirectorExtension on Director {
@@ -34,6 +36,10 @@ extension DirectorExtension on Director {
         return '/profile';
         case Director.SEARCH:
         return '/search';
+        case Director.NOTIFICATION:
+        return '/notif';
+        case Director.INVITE:
+        return '/invite';
       default:
         return '/';
     }
