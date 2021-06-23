@@ -1,7 +1,6 @@
 import 'package:club_house/src/models/User.dart';
-import 'package:club_house/src/utils/data.dart';
-import 'package:flutter/material.dart';
 import 'package:club_house/src/view/common/widget/round_image.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,10 +12,10 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: Icon(Icons.settings_rounded),
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.settings_rounded),
+          //   onPressed: () {},
+          // ),
         ],
       ),
       body: Padding(
@@ -87,14 +86,14 @@ class ProfilePage extends StatelessWidget {
                       TextSpan(
                         text: profile.num_followers.toString(),
                         style: TextStyle(
+                          color: Get.theme.textTheme.bodyText2.color,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      TextSpan(text: ' followers'),
+                      TextSpan(text: 'followers'.tr),
                     ],
                     style: TextStyle(
-                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -108,14 +107,12 @@ class ProfilePage extends StatelessWidget {
                         text: profile.num_following.toString(),
                         style: TextStyle(
                           fontSize: 20,
+                          color: Get.theme.textTheme.bodyText2.color,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      TextSpan(text: ' following'),
+                      TextSpan(text: 'followings'.tr),
                     ],
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
                   ),
                 ),
               ],
@@ -136,10 +133,11 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget builderInviter() {
+    if(profile.invited_by_user_profile!=null)
     return Row(
       children: [
         RoundImage(
-          url: profile.invited_by_user_profile.photo_url,
+          url: profile.invited_by_user_profile.photo_url??"",
         ),
         SizedBox(
           width: 10,
@@ -161,11 +159,12 @@ class ProfilePage extends StatelessWidget {
                     text: profile.invited_by_user_profile.username,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: Get.theme.textTheme.bodyText2.color.withOpacity(0.7),
                     ),
                   ),
                 ],
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Get.theme.textTheme.bodyText2.color.withOpacity(0.7),
                 ),
               ),
             ),
@@ -173,5 +172,7 @@ class ProfilePage extends StatelessWidget {
         ),
       ],
     );
+    else
+    return Center();
   }
 }
