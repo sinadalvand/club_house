@@ -38,4 +38,7 @@ final en_US = {
   'nominated_by':'Nominated by ',
   'joined':'Joined @date',
   'search':'Search',
+  'followers':' followers',
+  'followings':' following',
+  'cancel':'Cancel',
 };

@@ -37,4 +37,7 @@ final fa_IR = {
   'nominated_by':'دعوت شده توسط ',
   'joined':'عضو شده در تاریخ @date',
   'search':'جستجو',
+  'followers':' دنبال کننده',
+  'followings':' دنبال شونده',
+  'cancel':'بیخیال',
 };
