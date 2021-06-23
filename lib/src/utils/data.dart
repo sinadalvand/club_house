@@ -69,23 +69,7 @@ List<Room> rooms = List.generate(
   (index) => Room.fromJson(roomData[index]),
 );
 
-List lobbyBottomSheets = [
-  {
-    'image': 'assets/images/open.png',
-    'text': 'Open',
-    'selectedMessage': 'Start a room open to everyone',
-  },
-  {
-    'image': 'assets/images/social.png',
-    'text': 'Social',
-    'selectedMessage': 'Start a room with people I follow',
-  },
-  {
-    'image': 'assets/images/closed.png',
-    'text': 'Closed',
-    'selectedMessage': 'Start a room for people I choose',
-  },
-];
+
 
 List<User> users = List.generate(20, (index) => User.fromJson(userData[index]));
 User myProfile = User.fromJson(profileData);
