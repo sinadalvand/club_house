@@ -1,3 +1,4 @@
+import 'package:club_house/src/view/common/widget/register_next_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,14 @@ class WaitListPage extends StatelessWidget {
               height: 30,
             ),
             buildBottom(context),
+            SizedBox(
+              height: 30,
+            ),
+            Expanded(
+              child: Center(
+                child: _suggestionBox(),
+              ),
+            )
           ],
         ),
       ),
@@ -34,7 +43,7 @@ class WaitListPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'we_have_reserved'.trParams({'name': 'sinasoft'}),
+          'we_have_reserved'.trParams({'name': ''}),
           textAlign: TextAlign.center,
           style: TextStyle(
             height: 1.8,
@@ -74,6 +83,33 @@ class WaitListPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _suggestionBox() {
+    return Container(
+      padding: EdgeInsets.all(7.0),
+      decoration: BoxDecoration(
+        color: Colors.white12.withOpacity(0.05),
+        borderRadius: BorderRadius.all(
+          Radius.circular(7.0),
+        ),
+      ),
+      height: 130,
+      width: 280,
+      child: Column(
+        children: [
+          Text(
+            "auto_invite_desc".tr,
+            textAlign: TextAlign.center,
+            style: TextStyle(),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          RegisterNextButton("request".tr)
+        ],
+      ),
     );
   }
 }
