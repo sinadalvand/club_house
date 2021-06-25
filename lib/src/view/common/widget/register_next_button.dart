@@ -5,18 +5,17 @@ import 'package:get/get.dart';
 import 'round_button.dart';
 
 class RegisterNextButton extends StatelessWidget {
-
   final Function onPressed;
   final String text;
+  final double size;
 
-  RegisterNextButton(this.text, [this.onPressed]);
-
+  RegisterNextButton(this.text, [this.onPressed, this.size = 230]);
 
   @override
   Widget build(BuildContext context) {
     return RoundButton(
       color: Get.theme.accentColor,
-      minimumWidth: 230,
+      minimumWidth: size,
       disabledColor: Get.theme.accentColor.withOpacity(0.3),
       onPressed: onPressed,
       child: Container(
@@ -32,6 +31,7 @@ class RegisterNextButton extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
+              SizedBox(width: 5,),
               Icon(
                 Icons.arrow_right_alt,
                 color: Colors.white,

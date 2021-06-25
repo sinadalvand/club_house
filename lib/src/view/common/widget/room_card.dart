@@ -1,6 +1,7 @@
 import 'package:club_house/src/models/Channel.dart';
 import 'package:club_house/src/utils/Utils.dart';
 import 'package:club_house/src/view/common/widget/round_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RoomCard extends StatelessWidget {
@@ -15,17 +16,22 @@ class RoomCard extends StatelessWidget {
         horizontal: 20,
         vertical: 20,
       ),
-      decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(20), boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          offset: Offset(0, 1),
-        )
-      ]),
+      decoration: BoxDecoration(
+          color: Colors.black12,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              offset: Offset(0, 1),
+            )
+          ]),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             channel.topic ?? "",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -64,14 +70,19 @@ class RoomCard extends StatelessWidget {
   Widget buildProfileImages() {
     return Stack(
       children: [
+        if (channel.users[0].photo_url != null)
         RoundImage(
-          margin: EdgeInsets.only(top: 15, right: Utils.isRtl() ? 25 : 0, left: Utils.isRtl() ? 0 : 25),
+          margin: EdgeInsets.only(
+              top: 15,
+              right: Utils.isRtl() ? 25 : 0,
+              left: Utils.isRtl() ? 0 : 25),
           url: channel.users[0].photo_url,
         ),
+        if (channel.users.length > 2 && channel.users[1].photo_url != null)
         RoundImage(
           url: channel.users[1].photo_url,
         ),
-        if (channel.users.length > 2)
+        if (channel.users.length > 2 && channel.users[2].photo_url != null)
           RoundImage(
             margin: const EdgeInsets.only(top: 30),
             url: channel.users[2].photo_url,
@@ -94,6 +105,7 @@ class RoomCard extends StatelessWidget {
                     child: Text(
                       channel.users[i].name,
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
