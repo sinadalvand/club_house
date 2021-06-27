@@ -15,7 +15,7 @@ Android,Window and Web application of Clubhouse
 
 
 ### Licence
-```aidl
+```
    Copyright 2019 Sina Dalvand
 
    Licensed under the Apache License, Version 2.0 (the "License");
